@@ -13,7 +13,8 @@ import processing.core.PImage;
  */
 
 public class Main extends PApplet {
-
+	private int screen;
+	private LoginView lv;
 	public static void main(String[] args) {
 		PApplet.main(Main.class.getName());
 
@@ -39,7 +40,7 @@ public class Main extends PApplet {
 	PImage buyE, buyMars, buyMoon;
 	PImage home;
 	PImage login, register;
-	PImage navegation;//Barra de navegación
+	PImage navigation;//Barra de navegación
 	PImage newContact;
 	PImage payForm, pay;
 	
@@ -51,7 +52,8 @@ public class Main extends PApplet {
 	}
 	
 	public void setup() {
-		
+		screen=1;
+		lv= new LoginView(this);
 		//Initialize buttons
 		addBut = loadImage("../image/interactive/addButton.png");
 		addButUI = loadImage("../image/interactive/addButtonUI.png");
@@ -78,9 +80,9 @@ public class Main extends PApplet {
 		buyMars = loadImage("../image/screens/buyMarsScreen.png");
 		buyMoon = loadImage("../image/screens/buyMoonScreen.png");
 		home = loadImage("../image/screens/homeScreen.png");
-		login = loadImage("../image/screens/loginScreen.png");
+		login = loadImage("../image/screens/LoginScreen.png");
 		register = loadImage("../image/screens/registerScreen.png");
-		navegation = loadImage("../image/screens/navegationBarScreen.png");
+		navigation = loadImage("../image/screens/navigationBar.png");
 		newContact = loadImage("../image/screens/newContactScreen.png");
 		payForm = loadImage("../image/screens/paymentForm.png");
 		pay = loadImage("../image/screens/payScreen.png");
@@ -88,6 +90,13 @@ public class Main extends PApplet {
 	
 	public void draw() {
 		background(0);
+		switch(screen) {
+		case 1:
+			lv.drawScreen();
+			break;
+		}
+		
+		text(mouseX+","+mouseY, mouseX, mouseY);
 		
 	}
 	

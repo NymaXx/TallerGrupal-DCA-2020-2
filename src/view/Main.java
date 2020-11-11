@@ -120,6 +120,9 @@ public class Main extends PApplet {
 		case 2:
 			screen=rv.changeScreen();
 			break;
+		case 3:
+			screen=hv.changeScreen();
+			break;
 		}
 	}
 	

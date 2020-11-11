@@ -91,6 +91,43 @@ public class Main extends PApplet {
 	
 	public void draw() {
 		background(0);
+<<<<<<< HEAD
+=======
+		switch(screen) {
+		case 1:
+			lv.drawScreen();
+			break;
+		case 2:
+			rv.drawScreen();
+			break;
+		case 3:
+			hv.drawScreen();
+			break;
+		}
+		
+		text(mouseX+","+mouseY, mouseX, mouseY);
+		
+	}
+	
+	
+	public void mousePressed() {
+		switch(screen) {
+		case 1:
+			screen=lv.changeScreen();
+			break;
+		case 2:
+			screen=rv.changeScreen();
+			break;
+		case 3:
+			screen=hv.changeScreen();
+			break;
+		}
+	}
+	
+	public void mouseWheel(MouseEvent event) {
+		float e = event.getCount();
+		switch(screen) {
+>>>>>>> 3d42cb4035fa849742bf1790ea7268ab0b7d22df
 		
 	}
 	

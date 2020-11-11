@@ -33,7 +33,7 @@ public class LoginView {
 	
 	public void drawScreen() {
 		app.image(loginScreen, 0,61,1280,659);
-		app.image(navigation, 0, 0,1280,72);
+		app.image(navigation, -4, 0);
 		if(app.mouseX>544 && app.mouseX<742 &&app.mouseY>451 && app.mouseY<497) {
 			app.image(loginButUI, 544, 451);
 		}else {

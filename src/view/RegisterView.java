@@ -32,7 +32,7 @@ public class RegisterView {
 	
 	public void drawScreen() {
 		app.image(registerScreen, 0,72,1280,648);
-		app.image(navigation, 0, 0,1280,72);
+		app.image(navigation, -4, 0);
 		if(app.mouseX>541 && app.mouseX<739 &&app.mouseY>591 && app.mouseY<638) {
 			app.image(registerBUI, 541, 591);
 		}else {

@@ -2,6 +2,7 @@ package view;
 
 import processing.core.PApplet;
 import processing.core.PImage;
+import processing.event.MouseEvent;
 
 /**
  * Main class 
@@ -16,6 +17,7 @@ public class Main extends PApplet {
 	private int screen;
 	private LoginView lv;
 	private RegisterView rv;
+	private HomeView hv;
 	public static void main(String[] args) {
 		PApplet.main(Main.class.getName());
 
@@ -56,6 +58,7 @@ public class Main extends PApplet {
 		screen=1;
 		lv= new LoginView(this);
 		rv= new RegisterView(this);
+		hv= new HomeView(this);
 		//Initialize buttons
 		addBut = loadImage("../image/interactive/addButton.png");
 		addButUI = loadImage("../image/interactive/addButtonUI.png");
@@ -100,7 +103,7 @@ public class Main extends PApplet {
 			rv.drawScreen();
 			break;
 		case 3:
-			System.out.println("Home Screen");
+			hv.drawScreen();
 			break;
 		}
 		
@@ -116,6 +119,16 @@ public class Main extends PApplet {
 			break;
 		case 2:
 			screen=rv.changeScreen();
+			break;
+		}
+	}
+	
+	public void mouseWheel(MouseEvent event) {
+		float e = event.getCount();
+		switch(screen) {
+		
+		case 3:
+			hv.scroll(e);
 			break;
 		}
 	}

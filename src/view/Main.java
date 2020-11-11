@@ -15,6 +15,7 @@ import processing.core.PImage;
 public class Main extends PApplet {
 	private int screen;
 	private LoginView lv;
+	private RegisterView rv;
 	public static void main(String[] args) {
 		PApplet.main(Main.class.getName());
 
@@ -54,6 +55,7 @@ public class Main extends PApplet {
 	public void setup() {
 		screen=1;
 		lv= new LoginView(this);
+		rv= new RegisterView(this);
 		//Initialize buttons
 		addBut = loadImage("../image/interactive/addButton.png");
 		addButUI = loadImage("../image/interactive/addButtonUI.png");
@@ -94,10 +96,28 @@ public class Main extends PApplet {
 		case 1:
 			lv.drawScreen();
 			break;
+		case 2:
+			rv.drawScreen();
+			break;
+		case 3:
+			System.out.println("Home Screen");
+			break;
 		}
 		
 		text(mouseX+","+mouseY, mouseX, mouseY);
 		
+	}
+	
+	
+	public void mousePressed() {
+		switch(screen) {
+		case 1:
+			screen=lv.changeScreen();
+			break;
+		case 2:
+			screen=rv.changeScreen();
+			break;
+		}
 	}
 	
 }

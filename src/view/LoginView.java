@@ -41,6 +41,19 @@ public class LoginView {
 		}
 		
 	}
+
+
+	public int changeScreen() {
+		int screen=1;
+		if(app.mouseX>544 && app.mouseX<742 &&app.mouseY>451 && app.mouseY<497) {
+			screen=3;
+		}
+		if(app.mouseX>723 && app.mouseX<746 &&app.mouseY>535 && app.mouseY<545) {
+			screen=2;
+		}
+		return screen;
+	}
+
 	
 	
 

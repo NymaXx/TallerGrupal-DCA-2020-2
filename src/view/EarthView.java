@@ -5,7 +5,7 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 /**
- * Moon view class 
+ * Earth view class 
 
  * @author: Juan P. Sanin
 

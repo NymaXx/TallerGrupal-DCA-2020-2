@@ -70,7 +70,7 @@ public class LoginView {
 			if(app.mouseX>358 && app.mouseX<437 &&app.mouseY>28 && app.mouseY<43) {
 				error=true;
 			}
-			if(app.mouseX>548 && app.mouseX<645 &&app.mouseY>28 && app.mouseY<43) {
+			if(app.mouseX>538 && app.mouseX<650 &&app.mouseY>28 && app.mouseY<43) {
 				error=true;
 			}
 		}else {
@@ -78,13 +78,6 @@ public class LoginView {
 				error=false;
 			}
 		}
-		
-		
-		
-		
-		
-		
-		
 		return screen;
 	}
 

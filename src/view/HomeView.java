@@ -49,6 +49,9 @@ public class HomeView {
 			screen=6;
 		}
 		
+		if(app.mouseX>538 && app.mouseX<650 &&app.mouseY>28 && app.mouseY<43) {
+			screen=8;
+		}
 		return screen;
 	}
 

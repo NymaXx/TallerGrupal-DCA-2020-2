@@ -45,7 +45,7 @@ public class MarsView {
 		if(app.mouseX>358 && app.mouseX<437 &&app.mouseY>28 && app.mouseY<43) {
 			screen=3;
 		}
-		if(app.mouseX>548 && app.mouseX<645 &&app.mouseY>28 && app.mouseY<43) {
+		if(app.mouseX>538 && app.mouseX<650 &&app.mouseY>28 && app.mouseY<43) {
 			screen=8;
 		}
 		if(app.mouseX>1019 && app.mouseX<1210 &&app.mouseY>622 && app.mouseY<684){

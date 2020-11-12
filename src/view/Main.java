@@ -19,6 +19,7 @@ public class Main extends PApplet {
 	private RegisterView rv;
 	private HomeView hv;
 	private MarsView mv;
+	private MoonView mnv;
 	public static void main(String[] args) {
 		PApplet.main(Main.class.getName());
 
@@ -63,6 +64,7 @@ public class Main extends PApplet {
 		rv= new RegisterView(this);
 		hv= new HomeView(this);
 		mv= new MarsView(this);
+		mnv=new MoonView(this);
 		//Initialize buttons
 		addBut = loadImage("../image/interactive/addButton.png");
 		addButUI = loadImage("../image/interactive/addButtonUI.png");
@@ -114,6 +116,9 @@ public class Main extends PApplet {
 		case 4:
 			mv.drawScreen();
 			break;
+		case 5:
+			mnv.drawScreen();
+			break;
 		}
 		fill(125,100);
 		text(mouseX+","+mouseY, mouseX, mouseY);
@@ -131,6 +136,12 @@ public class Main extends PApplet {
 			break;
 		case 3:
 			screen=hv.changeScreen();
+			break;
+		case 4:
+			screen=mv.changeScreen();
+			break;
+		case 5:
+			screen=mnv.changeScreen();
 			break;
 		}
 	}

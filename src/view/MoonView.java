@@ -5,31 +5,30 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 /**
- * Mars view class 
+ * Moon view class 
 
  * @author: Juan P. Sanin
 
  * @version: 1.0 11/9/2020
 
  */
-	
-public class MarsView {
+public class MoonView {
 	private Controller controller;
-	private PImage marsScreen;
+	private PImage moonScreen;
 	private PImage buyButton,buyButtonUI, navigation;
 	private PApplet app;
 	
-	public MarsView(PApplet app) {
+	public MoonView(PApplet app) {
 		controller= new Controller();
 		this.app = app;
-		marsScreen = app.loadImage("../image/screens/buyMarsScreen.png");
+		moonScreen = app.loadImage("../image/screens/buyMoonScreen.png");
 		navigation = app.loadImage("../image/screens/navigationBar.png");
 		buyButton= app.loadImage("../image/interactive/buyButton.png");
 		buyButtonUI= app.loadImage("../image/interactive/buyButtonUI.png");
 	}
 	
 	public void drawScreen() {
-		app.image(marsScreen, 0, 0);
+		app.image(moonScreen, 0, 0);
 		app.image(navigation, -4, 0);
 	
 		if(app.mouseX>1019 && app.mouseX<1210 &&app.mouseY>622 && app.mouseY<684) {
@@ -41,7 +40,7 @@ public class MarsView {
 	}
 	
 	public int changeScreen() {
-		int screen=4;
+		int screen=5;
 		if(app.mouseX>358 && app.mouseX<437 &&app.mouseY>28 && app.mouseY<43) {
 			screen=3;
 		}
@@ -55,5 +54,4 @@ public class MarsView {
 		
 		return screen;
 	}
-	
 }

@@ -33,7 +33,7 @@ public class ContactView {
 	}
 	
 	public void drawScreen() {
-		app.image(navigation, -4, 0);
+		
 	}
 	
 	

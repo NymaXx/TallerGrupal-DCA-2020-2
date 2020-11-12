@@ -17,7 +17,7 @@ import processing.core.PImage;
 public class HomeView {
 
 	private Controller controller;
-	private PImage homeScreen;
+	private PImage homeScreen, flightNavBar;
 	private int homeY,cardsY;
 	private PApplet app;
 	
@@ -25,6 +25,7 @@ public class HomeView {
 		controller= new Controller();
 		this.app = app;
 		homeScreen = app.loadImage("../image/template/HOME.png");
+		flightNavBar=app.loadImage("../image/interactive/flightNavBar.png");
 		homeY=0;
 		cardsY=800;
 		
@@ -33,6 +34,8 @@ public class HomeView {
 	
 	public void drawScreen() {
 		app.image(homeScreen, -4,homeY);
+		app.image(flightNavBar, -4, 0);
+		
 	}
 	
 	public int changeScreen() {
@@ -51,6 +54,9 @@ public class HomeView {
 		
 		if(app.mouseX>538 && app.mouseX<650 &&app.mouseY>28 && app.mouseY<43) {
 			screen=8;
+		}
+		if(app.mouseX>740 && app.mouseX<875 &&app.mouseY>28 && app.mouseY<43) {
+			screen=9;
 		}
 		return screen;
 	}

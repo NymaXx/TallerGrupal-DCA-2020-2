@@ -26,7 +26,7 @@ public class RegisterView {
 		controller=new Controller();
 		this.app = app;
 		registerScreen = app.loadImage("../image/screens/registerScreen.png");
-		navigation = app.loadImage("../image/screens/navigationBar.png");
+		navigation = app.loadImage("../image/interactive/navBar.png");
 		registerB = app.loadImage("../image/interactive/registerButton.png");
 		registerBUI = app.loadImage("../image/interactive/registerButtonUI.png");
 		errorMessage = app.loadImage("../image/interactive/registerError.png");
@@ -64,7 +64,10 @@ public class RegisterView {
 			if(app.mouseX>358 && app.mouseX<437 &&app.mouseY>28 && app.mouseY<43) {
 				error=true;
 			}
-			if(app.mouseX>548 && app.mouseX<645 &&app.mouseY>28 && app.mouseY<43) {
+			if(app.mouseX>538 && app.mouseX<650 &&app.mouseY>28 && app.mouseY<43) {
+				error=true;
+			}
+			if(app.mouseX>740 && app.mouseX<875 &&app.mouseY>28 && app.mouseY<43) {
 				error=true;
 			}
 		}else {

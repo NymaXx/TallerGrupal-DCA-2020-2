@@ -22,7 +22,7 @@ public class EarthView {
 		controller= new Controller();
 		this.app = app;
 		earthScreen = app.loadImage("../image/screens/buyEarthScreen.png");
-		navigation = app.loadImage("../image/screens/navigationBar.png");
+		navigation = app.loadImage("../image/interactive/navBar.png");
 		buyButton= app.loadImage("../image/interactive/buyButton.png");
 		buyButtonUI= app.loadImage("../image/interactive/buyButtonUI.png");
 	}
@@ -46,6 +46,9 @@ public class EarthView {
 		}
 		if(app.mouseX>538 && app.mouseX<650 &&app.mouseY>28 && app.mouseY<43) {
 			screen=8;
+		}
+		if(app.mouseX>740 && app.mouseX<875 &&app.mouseY>28 && app.mouseY<43) {
+			screen=9;
 		}
 		if(app.mouseX>1019 && app.mouseX<1210 &&app.mouseY>622 && app.mouseY<684){
 			screen=7;

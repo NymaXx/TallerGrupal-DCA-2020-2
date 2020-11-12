@@ -26,7 +26,7 @@ public class LoginView {
 		controller= new Controller();
 		this.app = app;
 		loginScreen = app.loadImage("../image/screens/loginScreen.png");
-		navigation = app.loadImage("../image/screens/navigationBar.png");
+		navigation = app.loadImage("../image/interactive/navBar.png");
 		loginBut = app.loadImage("../image/interactive/loginButton.png");
 		loginButUI = app.loadImage("../image/interactive/loginButtonUI.png");
 		errorMessage = app.loadImage("../image/interactive/loginAlertMessage.png");
@@ -71,6 +71,9 @@ public class LoginView {
 				error=true;
 			}
 			if(app.mouseX>538 && app.mouseX<650 &&app.mouseY>28 && app.mouseY<43) {
+				error=true;
+			}
+			if(app.mouseX>740 && app.mouseX<875 &&app.mouseY>28 && app.mouseY<43) {
 				error=true;
 			}
 		}else {

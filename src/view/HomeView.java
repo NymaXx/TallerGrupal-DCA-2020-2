@@ -17,8 +17,9 @@ import processing.core.PImage;
 public class HomeView {
 
 	private Controller controller;
-	private PImage homeScreen, flightNavBar;
+	private PImage homeScreen, flightNavBar, arrow;
 	private int homeY,cardsY;
+	private boolean drawArrow;
 	private PApplet app;
 	
 	public HomeView(PApplet app) {
@@ -26,8 +27,10 @@ public class HomeView {
 		this.app = app;
 		homeScreen = app.loadImage("../image/template/HOME.png");
 		flightNavBar=app.loadImage("../image/interactive/flightNavBar.png");
+		arrow= app.loadImage("../image/interactive/arrowVector.png");
 		homeY=0;
 		cardsY=800;
+		drawArrow=true;
 		
 		
 	}
@@ -35,6 +38,9 @@ public class HomeView {
 	public void drawScreen() {
 		app.image(homeScreen, -4,homeY);
 		app.image(flightNavBar, -4, 0);
+		if(drawArrow==true) {
+			app.image(arrow, 614, 675);
+		}
 		
 	}
 	
@@ -67,6 +73,7 @@ public class HomeView {
 				homeY-=25;
 				cardsY-=25;
 			}
+			drawArrow=false;
 			
 		}
 		if(e<0) {

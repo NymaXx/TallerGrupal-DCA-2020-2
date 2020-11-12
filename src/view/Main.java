@@ -2,18 +2,23 @@ package view;
 
 import processing.core.PApplet;
 import processing.core.PImage;
+import processing.event.MouseEvent;
 
 /**
  * Main class 
 
- * @author: Hillary Panesso y Estiven Reyes(version 2.0)
+ * @author: Juan Pablo Sanin
 
- * @version: 3.0 11/7/2020
+ * @version: 1.4 11/7/2020
 
  */
 
 public class Main extends PApplet {
-
+	private int screen;
+	private LoginView lv;
+	private RegisterView rv;
+	private HomeView hv;
+	private MarsView mv;
 	public static void main(String[] args) {
 		PApplet.main(Main.class.getName());
 
@@ -53,7 +58,11 @@ public class Main extends PApplet {
 	}
 	
 	public void setup() {
-		
+		screen=1;
+		lv= new LoginView(this);
+		rv= new RegisterView(this);
+		hv= new HomeView(this);
+		mv= new MarsView(this);
 		//Initialize buttons
 		addBut = loadImage("../image/interactive/addButton.png");
 		addButUI = loadImage("../image/interactive/addButtonUI.png");
@@ -81,7 +90,7 @@ public class Main extends PApplet {
 		buyMars = loadImage("../image/screens/buyMarsScreen.png");
 		buyMoon = loadImage("../image/screens/buyMoonScreen.png");
 		home = loadImage("../image/screens/homeScreen.png");
-		login = loadImage("../image/screens/loginScreennn.png");
+		login = loadImage("../image/screens/loginScreen.png");
 		register = loadImage("../image/screens/registerScreen.png");
 		navegation = loadImage("../image/screens/navigationBar.png");
 		newContact = loadImage("../image/screens/newContactScreen.png");
@@ -91,8 +100,7 @@ public class Main extends PApplet {
 	
 	public void draw() {
 		background(0);
-<<<<<<< HEAD
-=======
+
 		switch(screen) {
 		case 1:
 			lv.drawScreen();
@@ -103,8 +111,11 @@ public class Main extends PApplet {
 		case 3:
 			hv.drawScreen();
 			break;
+		case 4:
+			mv.drawScreen();
+			break;
 		}
-		
+		fill(125,100);
 		text(mouseX+","+mouseY, mouseX, mouseY);
 		
 	}
@@ -127,7 +138,11 @@ public class Main extends PApplet {
 	public void mouseWheel(MouseEvent event) {
 		float e = event.getCount();
 		switch(screen) {
->>>>>>> 3d42cb4035fa849742bf1790ea7268ab0b7d22df
+		case 3:
+			hv.scroll(e);
+			break;
+		}
+
 		
 	}
 	

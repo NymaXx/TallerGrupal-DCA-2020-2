@@ -33,22 +33,20 @@ public class HomeView {
 	
 	public void drawScreen() {
 		app.image(homeScreen, -4,homeY);
-		
-	
 	}
 	
 	public int changeScreen() {
 		int screen=3;
 		if(app.mouseX>185 && app.mouseX<442 &&app.mouseY>cardsY && app.mouseY<cardsY+259) {
-			System.out.println("Mars");
+			screen=4;
 		}
 		
 		if(app.mouseX>511 && app.mouseX<768 &&app.mouseY>cardsY && app.mouseY<cardsY+259) {
-			System.out.println("Moon");
+			screen=5;
 		}
 		
 		if(app.mouseX>837 && app.mouseX<1094 &&app.mouseY>cardsY && app.mouseY<cardsY+259) {
-			System.out.println("Earth");
+			screen=6;
 		}
 		
 		return screen;

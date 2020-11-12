@@ -18,6 +18,8 @@ public class RegisterView {
 	private Controller controller;
 	private PImage registerScreen;
 	private PImage registerB, registerBUI, navigation;
+	private PImage errorMessage;
+	private boolean error;
 	private PApplet app;
 
 	public RegisterView(PApplet app) {
@@ -27,24 +29,48 @@ public class RegisterView {
 		navigation = app.loadImage("../image/screens/navigationBar.png");
 		registerB = app.loadImage("../image/interactive/registerButton.png");
 		registerBUI = app.loadImage("../image/interactive/registerButtonUI.png");
-		
+		errorMessage = app.loadImage("../image/interactive/registerError.png");
+		error=false;
 	}
 	
 	public void drawScreen() {
-		app.image(registerScreen, 0,72,1280,648);
-		app.image(navigation, -4, 0);
-		if(app.mouseX>541 && app.mouseX<739 &&app.mouseY>591 && app.mouseY<638) {
-			app.image(registerBUI, 541, 591);
-		}else {
+		
+		if(error==true) {
+			app.image(registerScreen, 0,72,1280,648);
+			app.image(navigation, -4, 0);
 			app.image(registerB, 541, 591);
+			app.fill(0,95);
+			app.rect(0,0,1280, 720);
+			app.image(errorMessage,179, 273);
+		}else {
+			app.image(registerScreen, 0,72,1280,648);
+			app.image(navigation, -4, 0);
+			if(app.mouseX>541 && app.mouseX<739 &&app.mouseY>591 && app.mouseY<638) {
+				app.image(registerBUI, 541, 591);
+			}else {
+				app.image(registerB, 541, 591);
+			}	
 		}
+		
 		
 	}
 	
 	public int changeScreen() {
 		int screen=2;
-		if(app.mouseX>541 && app.mouseX<739 &&app.mouseY>591 && app.mouseY<638) {
-			screen=1;
+		if(error==false) {
+			if(app.mouseX>541 && app.mouseX<739 &&app.mouseY>591 && app.mouseY<638) {
+				screen=1;
+			}
+			if(app.mouseX>358 && app.mouseX<437 &&app.mouseY>28 && app.mouseY<43) {
+				error=true;
+			}
+			if(app.mouseX>548 && app.mouseX<645 &&app.mouseY>28 && app.mouseY<43) {
+				error=true;
+			}
+		}else {
+			if(app.mouseX>550 && app.mouseX<750 &&app.mouseY>360 && app.mouseY<410) {
+				error=false;
+			}
 		}
 		
 		return screen;

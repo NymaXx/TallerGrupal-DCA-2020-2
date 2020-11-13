@@ -24,38 +24,13 @@ public class Main extends PApplet {
 	private PayView pv;
 	private ContactView cv;
 	private ContactRegisterView crv;
+	private ProfileView pfv;
+	
+	private boolean showProfile;
 	public static void main(String[] args) {
 		PApplet.main(Main.class.getName());
 
 	}
-	
-	//Buttons
-	PImage addBut, addButUI;//First white anf then red
-	PImage addNewN, addNewNUI;//First black anf then red
-	PImage loginBut, loginButUI;
-	PImage payBut, payButUI;
-	PImage registerB,registerBUI;
-	
-	//Feedback
-	PImage addedSucces;//When the new contact has been added
-	PImage paySucces;//at the end of the purchase payment
-	PImage feed;// alert message
-	PImage loginFeed; // alert message LOGIN
-	
-	PImage cardE,cardMars, cardMoon;//home's cards
-	
-	//--------------------------------------------------------------
-	
-	//Screens
-	PImage buyE, buyMars, buyMoon;
-	PImage home;
-	PImage login;
-	PImage register;
-	PImage navegation;//Barra de navegación
-	PImage newContact;
-	PImage payForm, pay;
-	
-
 	
 	public void settings() {
 		size(1280, 720);
@@ -73,44 +48,14 @@ public class Main extends PApplet {
 		pv=new PayView(this);
 		cv= new ContactView(this);
 		crv= new ContactRegisterView(this);
-		//Initialize buttons
-		addBut = loadImage("../image/interactive/addButton.png");
-		addButUI = loadImage("../image/interactive/addButtonUI.png");
-		addNewN = loadImage("../image/interactive/addNewNumber.png");
-		addNewNUI = loadImage("../image/interactive/addNewNumberUI.png");
-		loginBut = loadImage("../image/interactive/loginButton.png");
-		loginButUI = loadImage("../image/interactive/loginButtonUI.png");
-		payBut = loadImage("../image/interactive/payButton.png");
-		payButUI = loadImage("../image/interactive/payButtonUI.png");
-		registerB = loadImage("../image/interactive/registerButton.png");
-		registerBUI = loadImage("../image/interactive/registerButtonUI.png");
+		pfv= new ProfileView(this);
+		showProfile=false;
 		
-		//Initialize Feedback
-		addedSucces = loadImage("../image/interactive/addedSuccessfully.png");
-		paySucces = loadImage("../image/interactive/paySuccessfull.png");
-		feed = loadImage("../image/interactive/Feedback.png");
-		loginFeed = loadImage("../image/interactive/loginAlertMessage.png");
-		
-		cardE = loadImage("../image/interactive/cardEarth.png");
-		cardMars = loadImage("../image/interactive/cardMars.png");
-		cardMoon = loadImage("../image/interactive/cardMoon.png");
-		
-		//Initialize screens
-		buyE = loadImage("../image/screens/buyEarthScreen.png");
-		buyMars = loadImage("../image/screens/buyMarsScreen.png");
-		buyMoon = loadImage("../image/screens/buyMoonScreen.png");
-		home = loadImage("../image/screens/homeScreen.png");
-		login = loadImage("../image/screens/loginScreen.png");
-		register = loadImage("../image/screens/registerScreen.png");
-		navegation = loadImage("../image/screens/navigationBar.png");
-		newContact = loadImage("../image/screens/newContactScreen.png");
-		payForm = loadImage("../image/screens/paymentForm.png");
-		pay = loadImage("../image/screens/payScreen.png");
 	}
 	
 	public void draw() {
 		background(0);
-
+		
 		switch(screen) {
 		case 1:
 			lv.drawScreen();
@@ -140,6 +85,9 @@ public class Main extends PApplet {
 			crv.drawScreen();
 			break;
 		}
+		if(showProfile==true) {
+			pfv.drawProfile();
+		}
 		fill(255,255);
 		text(mouseX+","+mouseY, mouseX, mouseY);
 		
@@ -147,35 +95,52 @@ public class Main extends PApplet {
 	
 	
 	public void mousePressed() {
-		switch(screen) {
-		case 1:
-			screen=lv.changeScreen();
-			break;
-		case 2:
-			screen=rv.changeScreen();
-			break;
-		case 3:
-			screen=hv.changeScreen();
-			break;
-		case 4:
-			screen=mv.changeScreen();
-			break;
-		case 5:
-			screen=mnv.changeScreen();
-			break;
-		case 6:
-			screen=ev.changeScreen();
-			break;
-		case 7:
-			screen=pv.changeScreen();
-			break;
-		case 8:
-			screen=cv.changeScreen();
-			break;
-		case 9:
-			screen=crv.changeScreen();
-			break;
+		if(showProfile==true) {
+			if(!(mouseX>1028 && mouseX<1280 &&mouseY>72 && mouseY<344)) {
+				showProfile=false;
+			}
+		int[] r= new int[2];
+		r[1]=0;
+		r=pfv.logout(screen);
+		screen=r[0];
+		if(r[1]==1) {
+			showProfile=false;
 		}
+		}else {
+			if(screen!=1 && screen!=2 &&mouseX>1112 && mouseX<1225 &&mouseY>28 && mouseY<43) {
+				showProfile=true;
+			}
+			switch(screen) {
+			case 1:
+				screen=lv.changeScreen();
+				break;
+			case 2:
+				screen=rv.changeScreen();
+				break;
+			case 3:
+				screen=hv.changeScreen();
+				break;
+			case 4:
+				screen=mv.changeScreen();
+				break;
+			case 5:
+				screen=mnv.changeScreen();
+				break;
+			case 6:
+				screen=ev.changeScreen();
+				break;
+			case 7:
+				screen=pv.changeScreen();
+				break;
+			case 8:
+				screen=cv.changeScreen();
+				break;
+			case 9:
+				screen=crv.changeScreen();
+				break;
+			}
+		}
+	
 	}
 	
 	public void mouseWheel(MouseEvent event) {

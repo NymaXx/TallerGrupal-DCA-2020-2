@@ -76,6 +76,9 @@ public class LoginView {
 			if(app.mouseX>740 && app.mouseX<875 &&app.mouseY>28 && app.mouseY<43) {
 				error=true;
 			}
+			if(app.mouseX>1112 && app.mouseX<1225 &&app.mouseY>28 && app.mouseY<43) {
+				error=true;
+			}
 		}else {
 			if(app.mouseX>550 && app.mouseX<750 &&app.mouseY>360 && app.mouseY<410) {
 				error=false;

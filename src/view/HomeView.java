@@ -48,21 +48,36 @@ public class HomeView {
 		int screen=3;
 		if(app.mouseX>185 && app.mouseX<442 &&app.mouseY>cardsY && app.mouseY<cardsY+259) {
 			screen=4;
+			drawArrow=true;
+			homeY=0;
+			cardsY=800;
 		}
 		
 		if(app.mouseX>511 && app.mouseX<768 &&app.mouseY>cardsY && app.mouseY<cardsY+259) {
 			screen=5;
+			drawArrow=true;
+			homeY=0;
+			cardsY=800;
 		}
 		
 		if(app.mouseX>837 && app.mouseX<1094 &&app.mouseY>cardsY && app.mouseY<cardsY+259) {
 			screen=6;
+			drawArrow=true;
+			homeY=0;
+			cardsY=800;
 		}
 		
 		if(app.mouseX>538 && app.mouseX<650 &&app.mouseY>28 && app.mouseY<43) {
 			screen=8;
+			drawArrow=true;
+			homeY=0;
+			cardsY=800;
 		}
 		if(app.mouseX>740 && app.mouseX<875 &&app.mouseY>28 && app.mouseY<43) {
 			screen=9;
+			drawArrow=true;
+			homeY=0;
+			cardsY=800;
 		}
 		return screen;
 	}

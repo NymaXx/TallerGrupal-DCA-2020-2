@@ -3,7 +3,15 @@ package model;
 import java.util.ArrayList;
 
 import processing.core.PApplet;
+import processing.core.PConstants;
+/**
+ * User class 
 
+ * @author: Juan P. Sanin
+
+ * @version: 1.1 11/14/2020
+
+ */
 public class User extends Person{
 	private String password;
 	private ArrayList<Contact> contacts;
@@ -31,8 +39,12 @@ public class User extends Person{
 	
 	@Override
 	public void draw() {
-		
-		
+		getApp().fill(0);
+		getApp().textAlign(PConstants.CENTER);
+		getApp().text(getName()+" "+getLastName(),1154,175);
+		getApp().text(getEmail(),1154,214);
+		getApp().text(getNationality(),1154,247);
+		getApp().text(getPhone(),1154,280);
 	}
 
 	public String getPassword() {

@@ -167,7 +167,7 @@ public class RegisterView {
 			System.out.println("si");
 		}else {
 			if(password.equals(confirmPassword)) {
-				controller.getUserInfo(name,lastName,email,nationality,phone,password, app);
+				controller.getUserInfo(name,lastName,nationality,email,phone,password, app);
 				success=true;
 			}else {
 				passwordMatchError=true;

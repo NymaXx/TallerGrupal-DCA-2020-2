@@ -30,6 +30,7 @@ public class ProfileView {
 		if(app.mouseX>1028 && app.mouseX<1280 &&app.mouseY>309 && app.mouseY<345) {
 			app.image(logOutButtonUI, 1028,309);
 		}
+		controller.drawUser();
 	}
 	
 	public int[] logout(int s) {

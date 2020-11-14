@@ -1,7 +1,6 @@
 package view;
 
 import processing.core.PApplet;
-import processing.core.PImage;
 import processing.event.MouseEvent;
 
 /**
@@ -59,7 +58,13 @@ public class Main extends PApplet {
 		switch(screen) {
 		case 1:
 			lv.drawScreen();
+			if(lv.isError() || lv.isCannotLoginError()) {
+				lv.getCp5().hide();
+			}else {
+				lv.getCp5().show();
+			}
 			rv.getCp5().hide();
+			
 			break;
 		case 2:
 			rv.drawScreen();
@@ -68,10 +73,12 @@ public class Main extends PApplet {
 			}else {
 				rv.getCp5().show();
 			}
-
+			lv.getCp5().hide();
 			break;
 		case 3:
 			hv.drawScreen();
+			lv.getCp5().hide();
+			rv.getCp5().hide();
 			break;
 		case 4:
 			mv.drawScreen();
@@ -109,6 +116,11 @@ public class Main extends PApplet {
 			int[] r= new int[2];
 			r[1]=0;
 			r=pfv.logout(screen);
+			if(r[0]==1) {
+				hv.setHomeY(0);
+				hv.setCardsY(800);
+				hv.setDrawArrow(true);
+			}
 			screen=r[0];
 			if(r[1]==1) {
 				showProfile=false;

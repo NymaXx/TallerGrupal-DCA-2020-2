@@ -5,10 +5,13 @@ import processing.core.PApplet;
 
 public class AdminSystem {
 	private ArrayList<User> users;
+	private int currentUser;
 	private static AdminSystem onlyInstance;
 
 	private AdminSystem() {
 		users = new ArrayList<User>();
+		currentUser=0;
+		
 	}
 	
 	public static AdminSystem getInstance() {
@@ -19,11 +22,14 @@ public class AdminSystem {
 	}
 	
 	public void sort() {}
-	public void login() {}
 	
-	public void addUser(String name, String lastName, String email, String nationality, String phone, String password,
+	public void initialUser(PApplet app) {
+		User u= new User("Elon", "Musk", "American", "elonmusk@tesla.com", "4791874423", "123", app);
+		users.add(u);
+	}
+	public void addUser(String name, String lastName, String nationality,String email, String phone, String password,
 			PApplet app) {
-		User u= new User(name, lastName, email, nationality, phone, password, app);
+		User u= new User(name, lastName, nationality, email, phone, password, app);
 		users.add(u);
 		for(int i = 0; i<users.size();i++) {
 			System.out.println(users.get(i).getName());
@@ -36,12 +42,50 @@ public class AdminSystem {
 		}
 		
 	}
-	public void searchUser() {}
+	
+	public int[] searchUser(String email) {
+		boolean found=false;
+		int[] info= new int[2];
+		info[0]=0;
+		info[1]=0;
+		for(int i = 0; i<users.size() && found==false;i++) {
+			String compareEmail=users.get(i).getEmail();
+			if(email.equals(compareEmail)) {
+				found=true;
+				info[0]=1;
+				info[1]=i;
+			}
+		}
+		
+		return info;
+	}
+	
+	public boolean login(int pos, String password) {
+		boolean success=false;
+		if(password.equals(users.get(pos).getPassword())) {
+			success=true;
+			currentUser=pos;
+		}
+		
+		return success;
+	}
+
+	public void drawUser() {
+		users.get(currentUser).draw();
+		
+	}
+	
 	public void addContact() {}
 
 	public ArrayList<User> getUsers() {
 		return users;
 	}
+
+	public int getCurrentUser() {
+		return currentUser;
+	}
+
+	
 	
 	
 }

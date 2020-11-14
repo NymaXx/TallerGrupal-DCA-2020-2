@@ -1,5 +1,7 @@
 package view;
 
+import controlP5.ControlP5;
+import controlP5.Textfield;
 import controller.Controller;
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -9,41 +11,70 @@ import processing.core.PImage;
 
  * @author: Juan P. Sanin
 
- * @version: 1.0 11/9/2020
+ * @version: 1.1 11/14/2020
 
  */
 public class LoginView {
-	
+
 	private Controller controller;
 	private PImage loginScreen;
 	private PImage loginBut, loginButUI, navigation;
 	private PImage errorMessage;
+	private PImage cannotLogin;
+	private boolean cannotLoginError;
 	private boolean error;
-	
+
+	private String email;
+	private String password;
+	private String[] inputs;
+	private ControlP5 cp5;
+
 	private PApplet app;
+	
 
 	public LoginView(PApplet app) {
 		controller= new Controller();
 		this.app = app;
+		controller.initialUser(app);
 		loginScreen = app.loadImage("../image/screens/loginScreen.png");
 		navigation = app.loadImage("../image/interactive/navBar.png");
 		loginBut = app.loadImage("../image/interactive/loginButton.png");
 		loginButUI = app.loadImage("../image/interactive/loginButtonUI.png");
 		errorMessage = app.loadImage("../image/interactive/loginAlertMessage.png");
+		cannotLogin = app.loadImage("../image/interactive/cannotLogin.png");
 		error=false;
-		
+		cannotLoginError=false;
+		cp5 = new ControlP5(app);
+		inputs = new String[2];
+		initializeTextFields();
+
 	}
-	
-	
+
+	private void initializeTextFields() {
+		inputs[0] = "Email";
+		inputs[1] = "Password";
+
+		cp5.addTextfield(inputs[0]).setPosition(419,275).setSize(447, 56).setAutoClear(true);
+		cp5.addTextfield(inputs[1]).setPosition(419,363).setSize(447, 56).setPasswordMode(true).setAutoClear(true);
+
+	}
+
+
 	public void drawScreen() {
-		if(error==true) {
+		if(error==true || cannotLoginError==true) {
 			app.image(loginScreen, 0,0);
 			app.image(navigation, -4, 0);
 			app.image(loginBut, 544, 451);
 			app.fill(0,95);
 			app.rect(0,0,1280, 720);
-			app.image(errorMessage,179, 273);
-		
+			if(error==true) {
+				app.image(errorMessage,179, 273);
+			}
+			if(cannotLoginError==true) {
+				app.image(cannotLogin,179, 273);
+			}
+
+
 		}else {
 			app.image(loginScreen, 0,0);
 			app.image(navigation, -4, 0);
@@ -53,16 +84,20 @@ public class LoginView {
 				app.image(loginBut, 544, 451);
 			}
 		}
-		
-		
+
+
 	}
 
 
 	public int changeScreen() {
 		int screen=1;
-		if(error==false) {
+		if(error==false && cannotLoginError==false) {
 			if(app.mouseX>544 && app.mouseX<742 &&app.mouseY>451 && app.mouseY<497) {
-				screen=3;
+				boolean success=login();
+				if(success) {
+					screen=3;
+				}
+
 			}
 			if(app.mouseX>723 && app.mouseX<746 &&app.mouseY>535 && app.mouseY<545) {
 				screen=2;
@@ -82,16 +117,43 @@ public class LoginView {
 		}else {
 			if(app.mouseX>550 && app.mouseX<750 &&app.mouseY>360 && app.mouseY<410) {
 				error=false;
+				cannotLoginError=false;
 			}
 		}
 		return screen;
 	}
 
-	
-	
 
-	
-	
-	
+	private boolean login() {
+		boolean success=false;
+		email=cp5.get(Textfield.class, "Email").getText();
+		password=cp5.get(Textfield.class, "Password").getText();
+		int[] info= controller.searchUser(email);
+		if(info[0]==1) {
+			success=controller.login(info[1], password);
+		}
+		if(info[0]==0) {
+			cannotLoginError=true;
+		}
+		if(success==false) {
+			cannotLoginError=true;
+		}
+		cp5.get(Textfield.class, "Email").setText("");
+		cp5.get(Textfield.class, "Password").setText("");
+		return success;
+
+	}
+
+	public boolean isCannotLoginError() {
+		return cannotLoginError;
+	}
+
+	public boolean isError() {
+		return error;
+	}
+
+	public ControlP5 getCp5() {
+		return cp5;
+	}
 
 }

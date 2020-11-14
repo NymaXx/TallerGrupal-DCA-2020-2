@@ -100,6 +100,18 @@ public class HomeView {
 		}
 		
 	}
+
+	public void setHomeY(int homeY) {
+		this.homeY = homeY;
+	}
+
+	public void setCardsY(int cardsY) {
+		this.cardsY = cardsY;
+	}
+
+	public void setDrawArrow(boolean drawArrow) {
+		this.drawArrow = drawArrow;
+	}
 	
 	
 	

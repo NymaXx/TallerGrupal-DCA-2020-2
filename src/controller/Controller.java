@@ -12,14 +12,31 @@ public class Controller {
 	}
 	
 	public void sort() {}
-	public void login() {}
-	public void searchUser() {}
+	
 	public void addContact() {}
 
 
-	public void getUserInfo(String name, String lastName, String email, String nationality, String phone,
+	public void getUserInfo(String name, String lastName,String nationality, String email,  String phone,
 			String password, PApplet app) {
-		adminSystem.addUser(name,lastName,email,nationality,phone,password, app);
+		adminSystem.addUser(name,lastName,nationality,email,phone,password, app);
 		
 	}
+	
+	public boolean login(int pos, String password) {
+		return adminSystem.login(pos, password);
+	}
+	
+	public int[] searchUser(String email) {
+		return adminSystem.searchUser(email);
+	}
+	
+	public void initialUser(PApplet app) {
+		adminSystem.initialUser(app);
+	}
+
+	public void drawUser() {
+		adminSystem.drawUser();
+		
+	}
+
 }

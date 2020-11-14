@@ -34,7 +34,23 @@ public class User extends Person{
 
 	
 	public void addContact() {}
-	public void purchaseTrip() {}
+	
+	public void purchaseTrip(int trip) {
+		switch(trip) {
+		case 1:
+			Mars mars= new Mars();
+			trips.add(mars);
+			break;
+		case 2:
+			Moon moon= new Moon();
+			trips.add(moon);
+			break;
+		case 3:
+			Intercontinental inter= new Intercontinental();
+			trips.add(inter);
+			break;
+		}
+	}
 	public void sortContacts() {}
 	
 	@Override
@@ -60,7 +76,6 @@ public class User extends Person{
 		return contacts;
 	}
 
-
 	public void setContacts(ArrayList<Contact> contacts) {
 		this.contacts = contacts;
 	}
@@ -69,7 +84,6 @@ public class User extends Person{
 	public ArrayList<Trip> getTrips() {
 		return trips;
 	}
-
 
 	public void setTrips(ArrayList<Trip> trips) {
 		this.trips = trips;

@@ -38,5 +38,10 @@ public class Controller {
 		adminSystem.drawUser();
 		
 	}
+	
+	public void addTrip(int trip) {
+		//1 Mars, 2 Moon, 3 Intercontinental
+		adminSystem.addTrip(trip);
+	}
 
 }

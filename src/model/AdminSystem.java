@@ -74,6 +74,11 @@ public class AdminSystem {
 		users.get(currentUser).draw();
 		
 	}
+
+	public void addTrip(int trip) {
+		users.get(currentUser).purchaseTrip(trip);
+	}
+
 	
 	public void addContact() {}
 

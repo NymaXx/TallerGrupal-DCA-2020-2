@@ -13,7 +13,7 @@ public class User extends Person{
 	private EmailComparator ec;
 	private PhoneComparator pc;
 
-	public User(String name, String lastName, String nationality, String email, Long phone,String password, PApplet app) {
+	public User(String name, String lastName, String nationality, String email, String phone,String password, PApplet app) {
 		super(name, lastName, nationality, email, phone, app);
 		this.password=password;
 		contacts= new ArrayList<Contact>();

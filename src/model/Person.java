@@ -17,11 +17,11 @@ public abstract class Person {
 	private String lastName;
 	private String nationality;
 	private String email;
-	private Long phone;
+	private String phone;
 	private PApplet app;
 	
 	//Constructor
-	public Person(String name, String lastName, String nationality, String email, Long phone, PApplet app) {
+	public Person(String name, String lastName, String nationality, String email, String phone, PApplet app) {
 		super();
 		this.name = name;
 		this.lastName = lastName;
@@ -58,12 +58,15 @@ public abstract class Person {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Long getPhone() {
+	
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(Long phone) {
+
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
 	public PApplet getApp() {
 		return app;
 	}

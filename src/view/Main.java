@@ -25,18 +25,18 @@ public class Main extends PApplet {
 	private ContactView cv;
 	private ContactRegisterView crv;
 	private ProfileView pfv;
-	
+
 	private boolean showProfile;
 	public static void main(String[] args) {
 		PApplet.main(Main.class.getName());
 
 	}
-	
+
 	public void settings() {
 		size(1280, 720);
-		
+
 	}
-	
+
 	public void setup() {
 		screen=1;
 		lv= new LoginView(this);
@@ -50,18 +50,25 @@ public class Main extends PApplet {
 		crv= new ContactRegisterView(this);
 		pfv= new ProfileView(this);
 		showProfile=false;
-		
+
 	}
-	
+
 	public void draw() {
 		background(0);
-		
+
 		switch(screen) {
 		case 1:
 			lv.drawScreen();
+			rv.getCp5().hide();
 			break;
 		case 2:
 			rv.drawScreen();
+			if(rv.isError() || rv.isRegisterError() || rv.isPasswordMatchError()) {
+				rv.getCp5().hide();
+			}else {
+				rv.getCp5().show();
+			}
+
 			break;
 		case 3:
 			hv.drawScreen();
@@ -90,22 +97,22 @@ public class Main extends PApplet {
 		}
 		fill(255,255);
 		text(mouseX+","+mouseY, mouseX, mouseY);
-		
+
 	}
-	
-	
+
+
 	public void mousePressed() {
 		if(showProfile==true) {
 			if(!(mouseX>1028 && mouseX<1280 &&mouseY>72 && mouseY<344)) {
 				showProfile=false;
 			}
-		int[] r= new int[2];
-		r[1]=0;
-		r=pfv.logout(screen);
-		screen=r[0];
-		if(r[1]==1) {
-			showProfile=false;
-		}
+			int[] r= new int[2];
+			r[1]=0;
+			r=pfv.logout(screen);
+			screen=r[0];
+			if(r[1]==1) {
+				showProfile=false;
+			}
 		}else {
 			if(screen!=1 && screen!=2 &&mouseX>1112 && mouseX<1225 &&mouseY>28 && mouseY<43) {
 				showProfile=true;
@@ -140,9 +147,9 @@ public class Main extends PApplet {
 				break;
 			}
 		}
-	
+
 	}
-	
+
 	public void mouseWheel(MouseEvent event) {
 		float e = event.getCount();
 		switch(screen) {
@@ -151,7 +158,7 @@ public class Main extends PApplet {
 			break;
 		}
 
-		
+
 	}
-	
+
 }

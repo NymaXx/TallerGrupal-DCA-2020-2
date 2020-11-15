@@ -1,5 +1,6 @@
 package view;
 
+import controlP5.ControlP5;
 import controller.Controller;
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -17,6 +18,12 @@ public class PayView {
 	private PImage payButtonUI, paySuccess;
 	private boolean purchased;
 	private PApplet app;
+	private String CardNumber;
+	private String MMDD;
+	private String CVV;
+	private String White;
+	private String[] inputs;
+	private ControlP5 cp5;
 	
 
 	public PayView(PApplet app) {
@@ -28,6 +35,25 @@ public class PayView {
 		paySuccess = app.loadImage("../image/interactive/paySuccessfull.png");
 		payButtonUI= app.loadImage("../image/interactive/payButtonUI.png");
 		purchased=false;
+		cp5 = new ControlP5(app);
+		inputs = new String[7];
+		initializeTextFields();
+	}
+	
+	private void initializeTextFields() {
+		inputs[0] = "Card Number";
+		inputs[1] = "MM/DD";
+		inputs[2] = "CVV";
+		inputs[3] = " ";
+		
+		cp5.addTextfield(inputs[0]).setPosition(155,360).setSize(631, 43).setAutoClear(true);
+		cp5.addTextfield(inputs[1]).setPosition(155,468).setSize(238, 43).setAutoClear(true);
+		cp5.addTextfield(inputs[2]).setPosition(548,468).setSize(238, 43).setAutoClear(true);
+		cp5.addTextfield(inputs[3]).setPosition(155,576).setSize(238, 43).setAutoClear(true);
+	}
+	
+	public void hide() {
+		cp5.hide();
 	}
 	
 	public void drawScreen() {
@@ -74,4 +100,5 @@ public class PayView {
 		}
 		return screen;
 	}
+	
 }

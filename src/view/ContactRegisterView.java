@@ -41,6 +41,7 @@ public class ContactRegisterView {
 		addContactButton= app.loadImage("../image/interactive/addContactButton.png");
 		addContactButtonUI= app.loadImage("../image/interactive/addContactButtonUI.png");
 		added= app.loadImage("../image/interactive/addedSuccessfully.png");
+		//missing failed contact image
 		contactAdded=false;
 		
 		addContactError= false;
@@ -95,43 +96,6 @@ public class ContactRegisterView {
 
 	}
 	
-	public int changeScreen() {
-		int screen=9;
-		if(contactAdded==true) {
-			if(app.mouseX>560 && app.mouseX<758 &&app.mouseY>420 && app.mouseY<467) {
-				screen=8;
-				contactAdded=false;
-				
-			}
-			
-			if(error==false && addContactError==false) {
-				if(app.mouseX>541 && app.mouseX<739 &&app.mouseY>591 && app.mouseY<638) {
-					boolean success=contactRegister();
-					if(success==true) {
-						screen=8;
-					}
-				}
-			}
-		}else {
-			if(app.mouseX>358 && app.mouseX<437 &&app.mouseY>28 && app.mouseY<43) {
-				screen=3;
-			}
-			if(app.mouseX>538 && app.mouseX<650 &&app.mouseY>28 && app.mouseY<43) {
-				screen=8;
-			}
-
-			if(app.mouseX>541 && app.mouseX<739 &&app.mouseY>591 && app.mouseY<638) {
-				contactAdded=true;
-				error= false;
-				addContactError=false;
-			}
-			
-			
-		}
-
-
-		return screen;
-	}
 		
 		private boolean contactRegister() {
 			boolean success=false;
@@ -168,6 +132,31 @@ public class ContactRegisterView {
 		//-----------------------
 
 	
+	public int changeScreen() {
+		int screen=9;
+		if(contactAdded==true) {
+			if(app.mouseX>560 && app.mouseX<758 &&app.mouseY>420 && app.mouseY<467) {
+				boolean success= contactRegister();
+				screen=8;
+				contactAdded=false;
+				addContactError= false;
+			}
+		}else {
+			if(app.mouseX>358 && app.mouseX<437 &&app.mouseY>28 && app.mouseY<43) {
+				screen=3;
+			}
+			if(app.mouseX>538 && app.mouseX<650 &&app.mouseY>28 && app.mouseY<43) {
+				screen=8;
+			}
+
+			if(app.mouseX>541 && app.mouseX<739 &&app.mouseY>591 && app.mouseY<638) {
+				contactAdded=true;
+			}
+		}
+
+
+		return screen;
+	}
 	
 	public ControlP5 getCp5() {
 		return cp5;
@@ -178,6 +167,10 @@ public class ContactRegisterView {
 	public boolean isError() {
 		
 		return error;
+	}
+
+	public boolean isContactAdded() {
+		return contactAdded;
 	}
 
 }

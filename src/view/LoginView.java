@@ -55,8 +55,13 @@ public class LoginView {
 		inputs[0] = "Email";
 		inputs[1] = "Password";
 
-		cp5.addTextfield(inputs[0]).setPosition(419,275).setSize(447, 56).setAutoClear(true);
-		cp5.addTextfield(inputs[1]).setPosition(419,363).setSize(447, 56).setPasswordMode(true).setAutoClear(true);
+		cp5.addTextfield(inputs[0]).setPosition(419,275).setSize(447, 56).setAutoClear(true).setColorValue(app.color(255))
+		.setColorActive(app.color(0,0,0,1)).setColorBackground(app.color(0,0,0,1)).setColorForeground(app.color(0,0,0,1))
+		.setColor(app.color(0,0,0,255)).setColorCursor(app.color(0,0,0,255)).getCaptionLabel().hide();
+		
+		cp5.addTextfield(inputs[1]).setPosition(419,363).setSize(447, 56).setPasswordMode(true).setAutoClear(true).setColorValue(app.color(255))
+		.setColorActive(app.color(0,0,0,1)).setColorBackground(app.color(0,0,0,1)).setColorForeground(app.color(0,0,0,1))
+		.setColor(app.color(0,0,0,255)).setColorCursor(app.color(0,0,0,255)).getCaptionLabel().hide();;
 
 	}
 

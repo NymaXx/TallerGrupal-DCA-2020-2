@@ -16,6 +16,7 @@ import processing.core.PImage;
 public class ContactRegisterView {
 	private Controller controller;
 	private PImage registerContactScreen;
+	private PImage errorMessageC;
 	private PImage addContactButton, addContactButtonUI, navBar,added;
 	private boolean contactAdded;
 	private PApplet app;
@@ -35,10 +36,12 @@ public class ContactRegisterView {
 		controller=new Controller();
 		this.app = app;
 		registerContactScreen = app.loadImage("../image/screens/newContactScreenn.png");
+		errorMessageC = app.loadImage("../image/interactive/registerContactErrorM.png");
 		navBar = app.loadImage("../image/interactive/addContactNavBar.png");
 		addContactButton= app.loadImage("../image/interactive/addContactButton.png");
 		addContactButtonUI= app.loadImage("../image/interactive/addContactButtonUI.png");
 		added= app.loadImage("../image/interactive/addedSuccessfully.png");
+		//missing failed contact image
 		contactAdded=false;
 		
 		addContactError= false;
@@ -47,15 +50,40 @@ public class ContactRegisterView {
 		inputs = new String[5];
 		initializeTextFields();
 	}
+	
+	//add new contact Screen-------------------
+			private void initializeTextFields() {
+				inputs[0] = "Name";
+				inputs[1] = "Last Name";
+				inputs[2] = "E-mail";
+				inputs[3] = "Nationality";
+				inputs[4] = "Phone Number";
 
+				
+				cp5.addTextfield(inputs[0]).setPosition(205,252).setSize(406, 51).setAutoClear(true);
+				cp5.addTextfield(inputs[1]).setPosition(670,251).setSize(406, 51).setAutoClear(true);
+				cp5.addTextfield(inputs[2]).setPosition(205,329).setSize(406, 51).setAutoClear(true);
+				cp5.addTextfield(inputs[3]).setPosition(670,329).setSize(406, 51).setAutoClear(true);
+				cp5.addTextfield(inputs[4]).setPosition(205,405).setSize(406, 51).setAutoClear(true);
+				
+			}
+			
 	public void drawScreen() {
-		if(contactAdded==true) {
+		if(error==true ||contactAdded==true ) {
 			app.image(registerContactScreen, 0,72);
 			app.image(navBar, -4, 0);
 			app.image(addContactButton, 541, 591);
 			app.fill(0,95);
 			app.rect(0,0,1280, 720);
-			app.image(added,130, 274);
+			
+			
+			if(contactAdded==true){
+				app.image(added,130, 274);
+			}
+			
+			if(error==true) {
+				app.image(errorMessageC,179, 273);
+			}
 		}else {
 			app.image(registerContactScreen, 0,72);
 			app.image(navBar, -4, 0);
@@ -68,24 +96,8 @@ public class ContactRegisterView {
 
 	}
 	
-	//add new contact Screen-------------------
-		private void initializeTextFields() {
-			inputs[0] = "Name";
-			inputs[1] = "Last Name";
-			inputs[2] = "E-mail";
-			inputs[3] = "Nationality";
-			inputs[4] = "Phone Number";
-
-			
-			cp5.addTextfield(inputs[0]).setPosition(205,252).setSize(406, 51).setAutoClear(true);
-			cp5.addTextfield(inputs[1]).setPosition(670,251).setSize(406, 51).setAutoClear(true);
-			cp5.addTextfield(inputs[2]).setPosition(205,329).setSize(406, 51).setAutoClear(true);
-			cp5.addTextfield(inputs[3]).setPosition(670,329).setSize(406, 51).setAutoClear(true);
-			cp5.addTextfield(inputs[4]).setPosition(205,405).setSize(406, 51).setAutoClear(true);
-			
-		}
 		
-		private boolean addContact() {
+		private boolean contactRegister() {
 			boolean success=false;
 			name=cp5.get(Textfield.class, "Name").getText();
 			lastName=cp5.get(Textfield.class, "Last Name").getText();
@@ -119,12 +131,15 @@ public class ContactRegisterView {
 		}
 		//-----------------------
 
+	
 	public int changeScreen() {
 		int screen=9;
 		if(contactAdded==true) {
 			if(app.mouseX>560 && app.mouseX<758 &&app.mouseY>420 && app.mouseY<467) {
+				boolean success= contactRegister();
 				screen=8;
 				contactAdded=false;
+				addContactError= false;
 			}
 		}else {
 			if(app.mouseX>358 && app.mouseX<437 &&app.mouseY>28 && app.mouseY<43) {
@@ -152,6 +167,10 @@ public class ContactRegisterView {
 	public boolean isError() {
 		
 		return error;
+	}
+
+	public boolean isContactAdded() {
+		return contactAdded;
 	}
 
 }

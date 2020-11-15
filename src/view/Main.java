@@ -111,7 +111,7 @@ public class Main extends PApplet {
 		case 9:
 			pv.hide();
 			crv.drawScreen();
-			if(crv.isError() || crv.isAddContactError()) {
+			if(crv.isError() || crv.isAddContactError() || crv.isContactAdded()) {
 				crv.getCp5().hide();
 			}else {
 				crv.getCp5().show();
@@ -123,7 +123,7 @@ public class Main extends PApplet {
 		if(showProfile==true) {
 			pfv.drawProfile();
 		}
-		fill(255,255);
+		fill(0,255);
 		text(mouseX+","+mouseY, mouseX, mouseY);
 
 	}

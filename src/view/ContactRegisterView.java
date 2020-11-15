@@ -39,6 +39,7 @@ public class ContactRegisterView {
 		addContactButton= app.loadImage("../image/interactive/addContactButton.png");
 		addContactButtonUI= app.loadImage("../image/interactive/addContactButtonUI.png");
 		added= app.loadImage("../image/interactive/addedSuccessfully.png");
+		//missing failed contact image
 		contactAdded=false;
 		
 		addContactError= false;
@@ -123,8 +124,10 @@ public class ContactRegisterView {
 		int screen=9;
 		if(contactAdded==true) {
 			if(app.mouseX>560 && app.mouseX<758 &&app.mouseY>420 && app.mouseY<467) {
+				boolean success= addContact();
 				screen=8;
 				contactAdded=false;
+				addContactError= false;
 			}
 		}else {
 			if(app.mouseX>358 && app.mouseX<437 &&app.mouseY>28 && app.mouseY<43) {
@@ -152,6 +155,10 @@ public class ContactRegisterView {
 	public boolean isError() {
 		
 		return error;
+	}
+
+	public boolean isContactAdded() {
+		return contactAdded;
 	}
 
 }

@@ -100,7 +100,7 @@ public class Main extends PApplet {
 			break;
 		case 9:
 			crv.drawScreen();
-			if(crv.isError() || crv.isAddContactError()) {
+			if(crv.isError() || crv.isAddContactError() || crv.isContactAdded()) {
 				crv.getCp5().hide();
 			}else {
 				crv.getCp5().show();

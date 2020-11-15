@@ -36,6 +36,7 @@ public class RegisterView {
 	private String confirmPassword;
 	private String[] inputs;
 	private ControlP5 cp5;
+	
 
 	public RegisterView(PApplet app) {
 		controller=new Controller();
@@ -185,6 +186,10 @@ public class RegisterView {
 			cp5.get(Textfield.class, "Confirm Password").setText("");
 		}
 		return success;
+	}
+	
+	public void hide() {
+		cp5.hide();
 	}
 
 	public ControlP5 getCp5() {

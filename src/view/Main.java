@@ -57,6 +57,7 @@ public class Main extends PApplet {
 
 		switch(screen) {
 		case 1:
+			pv.hide();
 			lv.drawScreen();
 			if(lv.isError() || lv.isCannotLoginError()) {
 				lv.getCp5().hide();
@@ -68,6 +69,7 @@ public class Main extends PApplet {
 			
 			break;
 		case 2:
+			pv.hide();
 			rv.drawScreen();
 			if(rv.isError() || rv.isRegisterError() || rv.isPasswordMatchError()) {
 				rv.getCp5().hide();
@@ -76,29 +78,38 @@ public class Main extends PApplet {
 			}
 			lv.getCp5().hide();
 			crv.getCp5().hide();
+			pv.hide();
 			break;
 		case 3:
+			pv.hide();
 			hv.drawScreen();
 			lv.getCp5().hide();
 			rv.getCp5().hide();
 			break;
 		case 4:
+			pv.hide();
+			lv.getCp5().hide();
+			rv.getCp5().hide();
 			mv.drawScreen();
 			break;
 		case 5:
+			pv.hide();
 			mnv.drawScreen();
 			break;
 		case 6:
+			pv.hide();
 			ev.drawScreen();
 			break;
 		case 7:
 			pv.drawScreen();
 			break;
 		case 8:
+			pv.hide();
 			cv.drawScreen();
 			crv.getCp5().hide();
 			break;
 		case 9:
+			pv.hide();
 			crv.drawScreen();
 			if(crv.isError() || crv.isAddContactError() || crv.isContactAdded()) {
 				crv.getCp5().hide();

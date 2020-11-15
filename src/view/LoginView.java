@@ -55,6 +55,7 @@ public class LoginView {
 		cannotLoginError=false;
 		cp5 = new ControlP5(app);
 		inputs = new String[2];
+		cp5.show();
 		initializeTextFields();
 
 	}
@@ -156,6 +157,10 @@ public class LoginView {
 		cp5.get(Textfield.class, "Password").setText("");
 		return success;
 
+	}
+	
+	public void hide() {
+		cp5.hide();
 	}
 
 	public boolean isCannotLoginError() {

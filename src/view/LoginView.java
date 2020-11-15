@@ -4,6 +4,7 @@ import controlP5.ControlP5;
 import controlP5.Textfield;
 import controller.Controller;
 import processing.core.PApplet;
+import processing.core.PFont;
 import processing.core.PImage;
 
 /**
@@ -21,6 +22,7 @@ public class LoginView {
 	private PImage loginBut, loginButUI, navigation;
 	private PImage errorMessage;
 	private PImage cannotLogin;
+	private PFont font;
 	
 	private PImage namebox, passwbox;
 	private boolean cannotLoginError;
@@ -28,7 +30,6 @@ public class LoginView {
 
 	private String email;
 	private String password;
-	private boolean box;
 	
 	private String[] inputs;
 	private ControlP5 cp5;
@@ -46,11 +47,10 @@ public class LoginView {
 		loginButUI = app.loadImage("../image/interactive/loginButtonUI.png");
 		errorMessage = app.loadImage("../image/interactive/loginAlertMessage.png");
 		cannotLogin = app.loadImage("../image/interactive/cannotLogin.png");
+		font = app.createFont("../font/Heebo-Regular.ttf", 16);
 		
 		namebox = app.loadImage("../image/box/logEmailRect.png");
 		passwbox = app.loadImage("../image/box/logPassRect.png");
-		box= false;
-		
 		error=false;
 		cannotLoginError=false;
 		cp5 = new ControlP5(app);
@@ -66,11 +66,11 @@ public class LoginView {
 
 		cp5.addTextfield(inputs[0]).setPosition(419,275).setSize(447, 56).setAutoClear(true).setColorValue(app.color(255))
 		.setColorActive(app.color(0,0,0,1)).setColorBackground(app.color(0,0,0,1)).setColorForeground(app.color(0,0,0,1))
-		.setColor(app.color(0,0,0,255)).setColorCursor(app.color(0,0,0,255)).getCaptionLabel().hide();
+		.setColor(app.color(0,0,0,255)).setColorCursor(app.color(0,0,0,255)).setFont(font).getCaptionLabel().hide();
 		
 		cp5.addTextfield(inputs[1]).setPosition(419,363).setSize(447, 56).setPasswordMode(true).setAutoClear(true).setColorValue(app.color(255))
 		.setColorActive(app.color(0,0,0,1)).setColorBackground(app.color(0,0,0,1)).setColorForeground(app.color(0,0,0,1))
-		.setColor(app.color(0,0,0,255)).setColorCursor(app.color(0,0,0,255)).getCaptionLabel().hide();;
+		.setColor(app.color(0,0,0,255)).setColorCursor(app.color(0,0,0,255)).setFont(font).getCaptionLabel().hide();;
 
 	}
 
@@ -78,6 +78,10 @@ public class LoginView {
 	public void drawScreen() {
 		if(error==true || cannotLoginError==true) {
 			app.image(loginScreen, 0,0);
+			app.tint(255, 126); 
+			app.image(namebox, 416,275);
+			app.image(passwbox, 416,363);
+			app.tint(255, 255); 
 			app.image(navigation, -4, 0);
 			app.image(loginBut, 544, 451);
 			app.fill(0,95);
@@ -92,6 +96,10 @@ public class LoginView {
 
 		}else {
 			app.image(loginScreen, 0,0);
+			app.tint(255, 75); 
+			app.image(namebox, 416,275);
+			app.image(passwbox, 416,363);
+			app.tint(255, 255);
 			app.image(navigation, -4, 0);
 			if(app.mouseX>544 && app.mouseX<742 &&app.mouseY>451 && app.mouseY<497) {
 				app.image(loginButUI, 544, 451);
@@ -129,6 +137,7 @@ public class LoginView {
 			if(app.mouseX>1112 && app.mouseX<1225 &&app.mouseY>28 && app.mouseY<43) {
 				error=true;
 			}
+			
 		}else {
 			if(app.mouseX>550 && app.mouseX<750 &&app.mouseY>360 && app.mouseY<410) {
 				error=false;

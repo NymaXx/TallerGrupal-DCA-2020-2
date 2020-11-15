@@ -37,7 +37,7 @@ public class Main extends PApplet {
 	}
 
 	public void setup() {
-		screen=7;
+		screen=3;
 		lv= new LoginView(this);
 		rv= new RegisterView(this);
 		hv= new HomeView(this);
@@ -111,7 +111,7 @@ public class Main extends PApplet {
 		case 9:
 			pv.hide();
 			crv.drawScreen();
-			if(crv.isError() || crv.isAddContactError() || crv.isContactAdded()) {
+			if(crv.isError() || crv.isContactAdded()) {
 				crv.getCp5().hide();
 			}else {
 				crv.getCp5().show();
@@ -123,7 +123,7 @@ public class Main extends PApplet {
 		if(showProfile==true) {
 			pfv.drawProfile();
 		}
-		fill(0,255);
+		fill(255,255);
 		text(mouseX+","+mouseY, mouseX, mouseY);
 
 	}

@@ -4,6 +4,7 @@ import controlP5.ControlP5;
 import controlP5.Textfield;
 import controller.Controller;
 import processing.core.PApplet;
+import processing.core.PFont;
 import processing.core.PImage;
 
 /**
@@ -33,7 +34,7 @@ public class RegisterView {
 	private PImage passB;
 	private PImage confirB;
 		
-	
+	private PFont font;
 	
 	private boolean error;
 	private boolean registerError;
@@ -60,7 +61,7 @@ public class RegisterView {
 		errorMessage = app.loadImage("../image/interactive/registerError.png");
 		fillFields = app.loadImage("../image/interactive/fillFields.png");
 		passwordError= app.loadImage("../image/interactive/passwordMatch.png");
-		
+		font = app.createFont("../font/Heebo-Regular.ttf", 16);
 		//BOX
 		nameB = app.loadImage("../image/box/nameRect.png");
 		lastB = app.loadImage("../image/box/lastRect.png");
@@ -91,19 +92,48 @@ public class RegisterView {
 		inputs[5] = "Password";
 		inputs[6] = "Confirm Password";
 		
-		cp5.addTextfield(inputs[0]).setPosition(205,252).setSize(406, 51).setAutoClear(true);
-		cp5.addTextfield(inputs[1]).setPosition(670,251).setSize(406, 51).setAutoClear(true);
-		cp5.addTextfield(inputs[2]).setPosition(205,329).setSize(406, 51).setAutoClear(true);
-		cp5.addTextfield(inputs[3]).setPosition(670,329).setSize(406, 51).setAutoClear(true);
-		cp5.addTextfield(inputs[4]).setPosition(205,405).setSize(406, 51).setAutoClear(true);
-		cp5.addTextfield(inputs[5]).setPosition(205,478).setSize(406, 51).setPasswordMode(true).setAutoClear(true);
-		cp5.addTextfield(inputs[6]).setPosition(670,478).setSize(406, 51).setPasswordMode(true).setAutoClear(true);
+		cp5.addTextfield(inputs[0]).setPosition(205,252).setSize(406, 51).setAutoClear(true).setColorValue(app.color(255))
+		.setColorActive(app.color(0,0,0,1)).setColorBackground(app.color(0,0,0,1)).setColorForeground(app.color(0,0,0,1))
+		.setColor(app.color(0,0,0,255)).setColorCursor(app.color(0,0,0,255)).setFont(font).getCaptionLabel().hide();
+		
+		cp5.addTextfield(inputs[1]).setPosition(670,251).setSize(406, 51).setAutoClear(true).setColorValue(app.color(255))
+		.setColorActive(app.color(0,0,0,1)).setColorBackground(app.color(0,0,0,1)).setColorForeground(app.color(0,0,0,1))
+		.setColor(app.color(0,0,0,255)).setColorCursor(app.color(0,0,0,255)).setFont(font).getCaptionLabel().hide();
+		
+		cp5.addTextfield(inputs[2]).setPosition(205,329).setSize(406, 51).setAutoClear(true).setColorValue(app.color(255))
+		.setColorActive(app.color(0,0,0,1)).setColorBackground(app.color(0,0,0,1)).setColorForeground(app.color(0,0,0,1))
+		.setColor(app.color(0,0,0,255)).setColorCursor(app.color(0,0,0,255)).setFont(font).getCaptionLabel().hide();
+		
+		cp5.addTextfield(inputs[3]).setPosition(670,329).setSize(406, 51).setAutoClear(true).setColorValue(app.color(255))
+		.setColorActive(app.color(0,0,0,1)).setColorBackground(app.color(0,0,0,1)).setColorForeground(app.color(0,0,0,1))
+		.setColor(app.color(0,0,0,255)).setColorCursor(app.color(0,0,0,255)).setFont(font).getCaptionLabel().hide();
+		
+		cp5.addTextfield(inputs[4]).setPosition(205,405).setSize(406, 51).setAutoClear(true).setColorValue(app.color(255))
+		.setColorActive(app.color(0,0,0,1)).setColorBackground(app.color(0,0,0,1)).setColorForeground(app.color(0,0,0,1))
+		.setColor(app.color(0,0,0,255)).setColorCursor(app.color(0,0,0,255)).setFont(font).getCaptionLabel().hide();
+		
+		cp5.addTextfield(inputs[5]).setPosition(205,478).setSize(406, 51).setPasswordMode(true).setAutoClear(true).setColorValue(app.color(255))
+		.setColorActive(app.color(0,0,0,1)).setColorBackground(app.color(0,0,0,1)).setColorForeground(app.color(0,0,0,1))
+		.setColor(app.color(0,0,0,255)).setColorCursor(app.color(0,0,0,255)).setFont(font).getCaptionLabel().hide();
+		
+		cp5.addTextfield(inputs[6]).setPosition(670,478).setSize(406, 51).setPasswordMode(true).setAutoClear(true).setColorValue(app.color(255))
+		.setColorActive(app.color(0,0,0,1)).setColorBackground(app.color(0,0,0,1)).setColorForeground(app.color(0,0,0,1))
+		.setColor(app.color(0,0,0,255)).setColorCursor(app.color(0,0,0,255)).setFont(font).getCaptionLabel().hide();
 	}
 	
 	public void drawScreen() {
 		
 		if(error==true || registerError==true || passwordMatchError==true) {
 			app.image(registerScreen, 0,72,1280,648);
+			app.tint(255, 126); 
+			app.image(nameB, 202,252);
+			app.image(lastB, 667,251);
+			app.image(emailB, 202,329);
+			app.image(natiB, 667,329);
+			app.image(cellB, 202,405);
+			app.image(passB, 202,478);
+			app.image(confirB, 667,478);
+			app.tint(255, 255); 
 			app.image(navigation, -4, 0);
 			app.image(registerB, 541, 591);
 			app.fill(0,95);
@@ -120,6 +150,15 @@ public class RegisterView {
 		}else {
 			
 			app.image(registerScreen, 0,72,1280,648);
+			app.tint(255, 126); 
+			app.image(nameB, 202,252);
+			app.image(lastB, 667,251);
+			app.image(emailB, 202,329);
+			app.image(natiB, 667,329);
+			app.image(cellB, 202,405);
+			app.image(passB, 202,478);
+			app.image(confirB, 667,478);
+			app.tint(255, 255); 
 			app.image(navigation, -4, 0);
 			if(app.mouseX>541 && app.mouseX<739 &&app.mouseY>591 && app.mouseY<638) {
 				app.image(registerBUI, 541, 591);
@@ -187,7 +226,6 @@ public class RegisterView {
 		if(!notemptyName || !notemptyLastName || !notemptyEmail ||
 				!notemptyNationality||!notemptyPhone ||!notemptyPassword) {
 			registerError=true;
-			System.out.println("si");
 		}else {
 			if(password.equals(confirmPassword)) {
 				controller.getUserInfo(name,lastName,nationality,email,phone,password, app);

@@ -30,7 +30,7 @@ public class ContactRegisterView {
 	private String[] inputs;
 	private ControlP5 cp5;
 	private boolean error;
-	private boolean addContactError;
+
 
 	public ContactRegisterView(PApplet app) {
 		controller=new Controller();
@@ -43,9 +43,8 @@ public class ContactRegisterView {
 		added= app.loadImage("../image/interactive/addedSuccessfully.png");
 		//missing failed contact image
 		contactAdded=false;
-		
-		addContactError= false;
 		error=false;
+		
 		cp5 = new ControlP5(app);
 		inputs = new String[5];
 		initializeTextFields();
@@ -69,7 +68,7 @@ public class ContactRegisterView {
 			}
 			
 	public void drawScreen() {
-		if(error==true ||contactAdded==true ) {
+		if(error==true) {
 			app.image(registerContactScreen, 0,72);
 			app.image(navBar, -4, 0);
 			app.image(addContactButton, 541, 591);
@@ -78,7 +77,7 @@ public class ContactRegisterView {
 			
 			
 			if(contactAdded==true){
-				app.image(added,130, 274);
+				app.image(added,130, 218);
 			}
 			
 			if(error==true) {
@@ -115,8 +114,11 @@ public class ContactRegisterView {
 			
 			if(!notemptyName || !notemptyLastName || !notemptyEmail ||
 					!notemptyNationality||!notemptyPhone) {
-				addContactError=true;
+				error=true;
 				System.out.println("si");
+			}else {
+				//controller.getContactInfo(name,lastName,nationality,email,phone, app);
+				success=true;
 			}
 				
 			if(success==true) {
@@ -134,12 +136,16 @@ public class ContactRegisterView {
 	
 	public int changeScreen() {
 		int screen=9;
-		if(contactAdded==true) {
-			if(app.mouseX>560 && app.mouseX<758 &&app.mouseY>420 && app.mouseY<467) {
-				boolean success= contactRegister();
-				screen=8;
-				contactAdded=false;
-				addContactError= false;
+		if(contactAdded==true || error==true) {
+			if(app.mouseX>555 && app.mouseX<753 &&app.mouseY>363 && app.mouseY<410) {
+				if(contactAdded==true) {
+					screen=8;
+					contactAdded=false;
+				}
+				if(error==true) {
+					error=false;
+				}
+				
 			}
 		}else {
 			if(app.mouseX>358 && app.mouseX<437 &&app.mouseY>28 && app.mouseY<43) {
@@ -150,7 +156,11 @@ public class ContactRegisterView {
 			}
 
 			if(app.mouseX>541 && app.mouseX<739 &&app.mouseY>591 && app.mouseY<638) {
-				contactAdded=true;
+				boolean success= contactRegister();
+				if(success==true) {
+					contactAdded=true;
+				}
+				
 			}
 		}
 
@@ -161,9 +171,7 @@ public class ContactRegisterView {
 	public ControlP5 getCp5() {
 		return cp5;
 	}
-	public boolean isAddContactError() {
-		return addContactError;
-	}
+
 	public boolean isError() {
 		
 		return error;

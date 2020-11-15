@@ -112,7 +112,7 @@ public class Main extends PApplet {
 		if(showProfile==true) {
 			pfv.drawProfile();
 		}
-		fill(255,255);
+		fill(0,255);
 		text(mouseX+","+mouseY, mouseX, mouseY);
 
 	}

@@ -34,7 +34,7 @@ public class ContactRegisterView {
 	public ContactRegisterView(PApplet app) {
 		controller=new Controller();
 		this.app = app;
-		registerContactScreen = app.loadImage("../image/screens/newContactScreen.png");
+		registerContactScreen = app.loadImage("../image/screens/newContactScreenn.png");
 		navBar = app.loadImage("../image/interactive/addContactNavBar.png");
 		addContactButton= app.loadImage("../image/interactive/addContactButton.png");
 		addContactButtonUI= app.loadImage("../image/interactive/addContactButtonUI.png");

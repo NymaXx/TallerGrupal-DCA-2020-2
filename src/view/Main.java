@@ -96,6 +96,7 @@ public class Main extends PApplet {
 			break;
 		case 8:
 			cv.drawScreen();
+			crv.getCp5().hide();
 			break;
 		case 9:
 			crv.drawScreen();

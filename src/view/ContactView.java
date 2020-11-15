@@ -1,5 +1,7 @@
 package view;
 
+import controlP5.ControlP5;
+import controlP5.Textfield;
 import controller.Controller;
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -20,6 +22,9 @@ public class ContactView {
 	private PImage addButton, addButtonUI;
 	private int sort;
 	private PApplet app;
+	
+	
+	
 
 
 	public ContactView(PApplet app) {
@@ -44,7 +49,10 @@ public class ContactView {
 		5 is for sorting by email
 		 */
 		sort= 0;
+		
 	}
+	
+	
 
 	public void drawScreen() {
 		app.background(255);
@@ -117,6 +125,8 @@ public class ContactView {
 
 		return screen;
 	}
+	
+
 
 
 }

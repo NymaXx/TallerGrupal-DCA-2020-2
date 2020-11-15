@@ -64,6 +64,7 @@ public class Main extends PApplet {
 				lv.getCp5().show();
 			}
 			rv.getCp5().hide();
+			crv.getCp5().hide();
 			
 			break;
 		case 2:
@@ -74,6 +75,7 @@ public class Main extends PApplet {
 				rv.getCp5().show();
 			}
 			lv.getCp5().hide();
+			crv.getCp5().hide();
 			break;
 		case 3:
 			hv.drawScreen();
@@ -97,6 +99,13 @@ public class Main extends PApplet {
 			break;
 		case 9:
 			crv.drawScreen();
+			if(crv.isError() || crv.isAddContactError()) {
+				crv.getCp5().hide();
+			}else {
+				crv.getCp5().show();
+			}
+			rv.getCp5().hide();
+			lv.getCp5().hide();
 			break;
 		}
 		if(showProfile==true) {

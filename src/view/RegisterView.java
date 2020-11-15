@@ -23,6 +23,18 @@ public class RegisterView {
 	private PImage errorMessage;
 	private PImage fillFields;
 	private PImage passwordError;
+	
+	//box
+	private PImage nameB;
+	private PImage lastB;
+	private PImage natiB;
+	private PImage emailB;
+	private PImage cellB;
+	private PImage passB;
+	private PImage confirB;
+		
+	
+	
 	private boolean error;
 	private boolean registerError;
 	private boolean passwordMatchError;
@@ -48,6 +60,16 @@ public class RegisterView {
 		errorMessage = app.loadImage("../image/interactive/registerError.png");
 		fillFields = app.loadImage("../image/interactive/fillFields.png");
 		passwordError= app.loadImage("../image/interactive/passwordMatch.png");
+		
+		//BOX
+		nameB = app.loadImage("../image/box/nameRect.png");
+		lastB = app.loadImage("../image/box/lastRect.png");
+		natiB = app.loadImage("../image/box/natiRect.png");
+		emailB = app.loadImage("../image/box/emailRect.png");
+		cellB = app.loadImage("../image/box/cellRect.png");
+		passB = app.loadImage("../image/box/passwordRect.png");
+		confirB = app.loadImage("../image/box/confirRect.png");
+		
 		error=false;
 		registerError=false;
 		passwordMatchError=false;

@@ -25,6 +25,8 @@ public class PayView {
 	private String[] inputs;
 	private ControlP5 cp5;
 	private int passanger = 1;
+	//precio prueba
+	private int price = 2500;
 	
 
 	public PayView(PApplet app) {
@@ -77,6 +79,8 @@ public class PayView {
 		app.fill(0);
 		app.textSize(18);
 		app.text(passanger, 1017, 400);
+		
+		app.text(price *passanger, 1080, 493);
 	}
 	
 	public int changeScreen() {

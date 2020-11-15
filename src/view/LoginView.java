@@ -21,11 +21,15 @@ public class LoginView {
 	private PImage loginBut, loginButUI, navigation;
 	private PImage errorMessage;
 	private PImage cannotLogin;
+	
+	private PImage namebox, passwbox;
 	private boolean cannotLoginError;
 	private boolean error;
 
 	private String email;
 	private String password;
+	private boolean box;
+	
 	private String[] inputs;
 	private ControlP5 cp5;
 
@@ -42,6 +46,11 @@ public class LoginView {
 		loginButUI = app.loadImage("../image/interactive/loginButtonUI.png");
 		errorMessage = app.loadImage("../image/interactive/loginAlertMessage.png");
 		cannotLogin = app.loadImage("../image/interactive/cannotLogin.png");
+		
+		namebox = app.loadImage("../image/box/logEmailRect.png");
+		passwbox = app.loadImage("../image/box/logPassRect.png");
+		box= false;
+		
 		error=false;
 		cannotLoginError=false;
 		cp5 = new ControlP5(app);

@@ -75,9 +75,11 @@ public class ContactRegisterView {
 			app.fill(0,95);
 			app.rect(0,0,1280, 720);
 			
+			
 			if(contactAdded==true){
 				app.image(added,130, 274);
 			}
+			
 			if(error==true) {
 				app.image(errorMessageC,179, 273);
 			}
@@ -93,21 +95,22 @@ public class ContactRegisterView {
 
 	}
 	
-	
-
 	public int changeScreen() {
 		int screen=9;
-		
-		if(error==false && addContactError==false) {
-			if(app.mouseX>541 && app.mouseX<739 &&app.mouseY>591 && app.mouseY<638) {
-				boolean success=contactRegister();
-				if(success==true) {
-					screen=9;
-				}
-				else if(contactAdded==true) {
+		if(contactAdded==true) {
 			if(app.mouseX>560 && app.mouseX<758 &&app.mouseY>420 && app.mouseY<467) {
 				screen=8;
 				contactAdded=false;
+				
+			}
+			
+			if(error==false && addContactError==false) {
+				if(app.mouseX>541 && app.mouseX<739 &&app.mouseY>591 && app.mouseY<638) {
+					boolean success=contactRegister();
+					if(success==true) {
+						screen=8;
+					}
+				}
 			}
 		}else {
 			if(app.mouseX>358 && app.mouseX<437 &&app.mouseY>28 && app.mouseY<43) {
@@ -119,49 +122,51 @@ public class ContactRegisterView {
 
 			if(app.mouseX>541 && app.mouseX<739 &&app.mouseY>591 && app.mouseY<638) {
 				contactAdded=true;
+				error= false;
+				addContactError=false;
 			}
-		}
-	}
-}
 			
-		return screen;
-	
+			
 		}
 
-	private boolean contactRegister() {
-		boolean success=false;
-		name=cp5.get(Textfield.class, "Name").getText();
-		lastName=cp5.get(Textfield.class, "Last Name").getText();
-		email=cp5.get(Textfield.class, "E-mail").getText();
-		nationality=cp5.get(Textfield.class, "Nationality").getText();
-		phone=cp5.get(Textfield.class, "Phone Number").getText();
-		
-		
-		boolean notemptyName = !name.equals("");
-		boolean notemptyLastName = !lastName.equals("");
-		boolean notemptyEmail = !email.equals("");
-		boolean notemptyNationality = !nationality.equals("");
-		boolean notemptyPhone = !phone.equals("");
-		
-		
-		if(!notemptyName || !notemptyLastName || !notemptyEmail ||
-				!notemptyNationality||!notemptyPhone) {
-			addContactError=true;
-			System.out.println("si");
-		}
-			
-		if(success==true) {
-			cp5.get(Textfield.class, "Name").setText("");
-			cp5.get(Textfield.class, "Last Name").setText("");
-			cp5.get(Textfield.class, "E-mail").setText("");
-			cp5.get(Textfield.class, "Nationality").setText("");
-			cp5.get(Textfield.class, "Phone Number").setText("");
-			
-		}
-		return success;
+
+		return screen;
 	}
-	//-----------------------
-	
+		
+		private boolean contactRegister() {
+			boolean success=false;
+			name=cp5.get(Textfield.class, "Name").getText();
+			lastName=cp5.get(Textfield.class, "Last Name").getText();
+			email=cp5.get(Textfield.class, "E-mail").getText();
+			nationality=cp5.get(Textfield.class, "Nationality").getText();
+			phone=cp5.get(Textfield.class, "Phone Number").getText();
+			
+			
+			boolean notemptyName = !name.equals("");
+			boolean notemptyLastName = !lastName.equals("");
+			boolean notemptyEmail = !email.equals("");
+			boolean notemptyNationality = !nationality.equals("");
+			boolean notemptyPhone = !phone.equals("");
+			
+			
+			if(!notemptyName || !notemptyLastName || !notemptyEmail ||
+					!notemptyNationality||!notemptyPhone) {
+				addContactError=true;
+				System.out.println("si");
+			}
+				
+			if(success==true) {
+				cp5.get(Textfield.class, "Name").setText("");
+				cp5.get(Textfield.class, "Last Name").setText("");
+				cp5.get(Textfield.class, "E-mail").setText("");
+				cp5.get(Textfield.class, "Nationality").setText("");
+				cp5.get(Textfield.class, "Phone Number").setText("");
+				
+			}
+			return success;
+		}
+		//-----------------------
+
 	
 	
 	public ControlP5 getCp5() {

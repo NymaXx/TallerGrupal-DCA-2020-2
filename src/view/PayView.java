@@ -24,6 +24,7 @@ public class PayView {
 	private String White;
 	private String[] inputs;
 	private ControlP5 cp5;
+	private int passanger = 1;
 	
 
 	public PayView(PApplet app) {
@@ -58,7 +59,6 @@ public class PayView {
 	
 	public void drawScreen() {
 		
-		
 		if(purchased==true) {
 			app.image(payScreen, -4, 0);
 			app.image(navBar, -4, 0);
@@ -74,7 +74,9 @@ public class PayView {
 			
 		}
 		
-		
+		app.fill(0);
+		app.textSize(18);
+		app.text(passanger, 1017, 400);
 	}
 	
 	public int changeScreen() {
@@ -96,6 +98,17 @@ public class PayView {
 			}
 			if(app.mouseX>886 && app.mouseX<1236 &&app.mouseY>578 && app.mouseY<632) {
 				purchased=true;
+			}
+			
+			if(app.mouseX>1045 && app.mouseX<1059 &&app.mouseY>387 && app.mouseY<396) {
+				passanger++;
+			}
+			//Multiplicar el precio por pasageros 
+			if(app.mouseX>1060 && app.mouseX<1072 &&app.mouseY>387 && app.mouseY<396) {
+				passanger++;
+				if(passanger-->=3) {
+					passanger--;
+				}
 			}
 		}
 		return screen;

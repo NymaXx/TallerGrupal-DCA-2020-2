@@ -4,13 +4,14 @@ import controlP5.ControlP5;
 import controlP5.Textfield;
 import controller.Controller;
 import processing.core.PApplet;
+import processing.core.PFont;
 import processing.core.PImage;
 /**
  * Contact Register view class 
 
  * @author: Juan P. Sanin
 
- * @version: 1.0 11/9/2020
+ * @version: 1.0 11/16/2020
 
  */
 public class ContactRegisterView {
@@ -18,6 +19,13 @@ public class ContactRegisterView {
 	private PImage registerContactScreen;
 	private PImage errorMessageC;
 	private PImage addContactButton, addContactButtonUI, navBar,added;
+	private PImage nameB;
+	private PImage lastB;
+	private PImage natiB;
+	private PImage emailB;
+	private PImage cellB;
+	private PFont font;
+	
 	private boolean contactAdded;
 	private PApplet app;
 	
@@ -41,7 +49,14 @@ public class ContactRegisterView {
 		addContactButton= app.loadImage("../image/interactive/addContactButton.png");
 		addContactButtonUI= app.loadImage("../image/interactive/addContactButtonUI.png");
 		added= app.loadImage("../image/interactive/addedSuccessfully.png");
-		//missing failed contact image
+		nameB = app.loadImage("../image/box/nameRect.png");
+		lastB = app.loadImage("../image/box/lastRect.png");
+		natiB = app.loadImage("../image/box/natiRect.png");
+		emailB = app.loadImage("../image/box/emailRect.png");
+		cellB = app.loadImage("../image/box/cellRect.png");
+		
+		font = app.createFont("../font/Heebo-Regular.ttf", 16);
+		
 		contactAdded=false;
 		error=false;
 		
@@ -59,17 +74,38 @@ public class ContactRegisterView {
 				inputs[4] = "Phone Number";
 
 				
-				cp5.addTextfield(inputs[0]).setPosition(205,252).setSize(406, 51).setAutoClear(true);
-				cp5.addTextfield(inputs[1]).setPosition(670,251).setSize(406, 51).setAutoClear(true);
-				cp5.addTextfield(inputs[2]).setPosition(205,329).setSize(406, 51).setAutoClear(true);
-				cp5.addTextfield(inputs[3]).setPosition(670,329).setSize(406, 51).setAutoClear(true);
-				cp5.addTextfield(inputs[4]).setPosition(205,405).setSize(406, 51).setAutoClear(true);
+				cp5.addTextfield(inputs[0]).setPosition(205,252).setSize(406, 51).setAutoClear(true).setColorValue(app.color(255))
+				.setColorActive(app.color(0,0,0,1)).setColorBackground(app.color(0,0,0,1)).setColorForeground(app.color(0,0,0,1))
+				.setColor(app.color(0,0,0,255)).setColorCursor(app.color(0,0,0,255)).setFont(font).getCaptionLabel().hide();
+				
+				cp5.addTextfield(inputs[1]).setPosition(670,251).setSize(406, 51).setAutoClear(true).setColorValue(app.color(255))
+				.setColorActive(app.color(0,0,0,1)).setColorBackground(app.color(0,0,0,1)).setColorForeground(app.color(0,0,0,1))
+				.setColor(app.color(0,0,0,255)).setColorCursor(app.color(0,0,0,255)).setFont(font).getCaptionLabel().hide();
+				
+				cp5.addTextfield(inputs[2]).setPosition(205,329).setSize(406, 51).setAutoClear(true).setColorValue(app.color(255))
+				.setColorActive(app.color(0,0,0,1)).setColorBackground(app.color(0,0,0,1)).setColorForeground(app.color(0,0,0,1))
+				.setColor(app.color(0,0,0,255)).setColorCursor(app.color(0,0,0,255)).setFont(font).getCaptionLabel().hide();
+				
+				cp5.addTextfield(inputs[3]).setPosition(670,329).setSize(406, 51).setAutoClear(true).setColorValue(app.color(255))
+				.setColorActive(app.color(0,0,0,1)).setColorBackground(app.color(0,0,0,1)).setColorForeground(app.color(0,0,0,1))
+				.setColor(app.color(0,0,0,255)).setColorCursor(app.color(0,0,0,255)).setFont(font).getCaptionLabel().hide();
+				
+				cp5.addTextfield(inputs[4]).setPosition(205,405).setSize(406, 51).setAutoClear(true).setColorValue(app.color(255))
+				.setColorActive(app.color(0,0,0,1)).setColorBackground(app.color(0,0,0,1)).setColorForeground(app.color(0,0,0,1))
+				.setColor(app.color(0,0,0,255)).setColorCursor(app.color(0,0,0,255)).setFont(font).getCaptionLabel().hide();
 				
 			}
 			
 	public void drawScreen() {
 		if(error==true||contactAdded==true) {
 			app.image(registerContactScreen, 0,72);
+			app.tint(255, 126); 
+			app.image(nameB, 202,252);
+			app.image(lastB, 667,251);
+			app.image(emailB, 202,329);
+			app.image(natiB, 667,329);
+			app.image(cellB, 202,405);
+			app.tint(255, 255); 
 			app.image(navBar, -4, 0);
 			app.image(addContactButton, 541, 591);
 			app.fill(0,95);
@@ -85,7 +121,15 @@ public class ContactRegisterView {
 			}
 		}else {
 			app.image(registerContactScreen, 0,72);
+			app.tint(255, 126); 
+			app.image(nameB, 202,252);
+			app.image(lastB, 667,251);
+			app.image(emailB, 202,329);
+			app.image(natiB, 667,329);
+			app.image(cellB, 202,405);
+			app.tint(255, 255); 
 			app.image(navBar, -4, 0);
+			
 			if(app.mouseX>541 && app.mouseX<739 &&app.mouseY>591 && app.mouseY<638) {
 				app.image(addContactButtonUI, 541, 591);
 			}else {

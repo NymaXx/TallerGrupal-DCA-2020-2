@@ -183,5 +183,10 @@ public class LoginView {
 	public ControlP5 getCp5() {
 		return cp5;
 	}
+	
+	public void clearTextFields() {
+		cp5.get(Textfield.class, "Email").setText("");
+		cp5.get(Textfield.class, "Password").setText("");
+	}
 
 }

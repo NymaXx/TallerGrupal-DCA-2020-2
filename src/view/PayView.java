@@ -1,32 +1,36 @@
 package view;
 
 import controlP5.ControlP5;
+import controlP5.Textfield;
 import controller.Controller;
 import processing.core.PApplet;
+import processing.core.PConstants;
+import processing.core.PFont;
 import processing.core.PImage;
 /**
  * Moon view class 
 
  * @author: Juan P. Sanin
 
- * @version: 1.0 11/9/2020
+ * @version: 1.3 11/16/2020
 
  */
 public class PayView {
 	private Controller controller;
 	private PImage payScreen, navBar;
-	private PImage payButtonUI, paySuccess;
+	private PImage payButtonUI, paySuccess, payError;
 	private boolean purchased;
 	private PApplet app;
-	private String CardNumber;
+	private String cardNumber;
 	private String MMDD;
 	private String CVV;
-	private String White;
+	private String installments;
 	private String[] inputs;
+	private PFont font;
 	private ControlP5 cp5;
 	private int passanger = 1;
-	//precio prueba
-	private int price = 2500;
+	private double price;
+	private boolean paymentError;
 	
 
 	public PayView(PApplet app) {
@@ -37,7 +41,11 @@ public class PayView {
 		navBar= app.loadImage("../image/interactive/navBar.png");
 		paySuccess = app.loadImage("../image/interactive/paySuccessfull.png");
 		payButtonUI= app.loadImage("../image/interactive/payButtonUI.png");
+		payError= app.loadImage("../image/interactive/paymentError.png");
+		font = app.createFont("../font/Heebo-Regular.ttf", 16);
 		purchased=false;
+		paymentError=false;
+		price=0;
 		cp5 = new ControlP5(app);
 		inputs = new String[7];
 		initializeTextFields();
@@ -47,26 +55,40 @@ public class PayView {
 		inputs[0] = "Card Number";
 		inputs[1] = "MM/DD";
 		inputs[2] = "CVV";
-		inputs[3] = " ";
+		inputs[3] = "Installments";
 		
-		cp5.addTextfield(inputs[0]).setPosition(155,360).setSize(631, 43).setAutoClear(true);
-		cp5.addTextfield(inputs[1]).setPosition(155,468).setSize(238, 43).setAutoClear(true);
-		cp5.addTextfield(inputs[2]).setPosition(548,468).setSize(238, 43).setAutoClear(true);
-		cp5.addTextfield(inputs[3]).setPosition(155,576).setSize(238, 43).setAutoClear(true);
+		cp5.addTextfield(inputs[0]).setPosition(155,360).setSize(631, 43).setAutoClear(true).setColorValue(app.color(255))
+		.setColorActive(app.color(0,0,0,1)).setColorBackground(app.color(0,0,0,1)).setColorForeground(app.color(0,0,0,1))
+		.setColor(app.color(0,0,0,255)).setColorCursor(app.color(0,0,0,255)).setFont(font).getCaptionLabel().hide();
+		
+		cp5.addTextfield(inputs[1]).setPosition(155,468).setSize(238, 43).setAutoClear(true).setColorValue(app.color(255))
+		.setColorActive(app.color(0,0,0,1)).setColorBackground(app.color(0,0,0,1)).setColorForeground(app.color(0,0,0,1))
+		.setColor(app.color(0,0,0,255)).setColorCursor(app.color(0,0,0,255)).setFont(font).getCaptionLabel().hide();
+		
+		cp5.addTextfield(inputs[2]).setPosition(548,468).setSize(238, 43).setAutoClear(true).setColorValue(app.color(255))
+		.setColorActive(app.color(0,0,0,1)).setColorBackground(app.color(0,0,0,1)).setColorForeground(app.color(0,0,0,1))
+		.setColor(app.color(0,0,0,255)).setColorCursor(app.color(0,0,0,255)).setFont(font).getCaptionLabel().hide();
+		
+		cp5.addTextfield(inputs[3]).setPosition(155,576).setSize(238, 43).setAutoClear(true).setColorValue(app.color(255))
+		.setColorActive(app.color(0,0,0,1)).setColorBackground(app.color(0,0,0,1)).setColorForeground(app.color(0,0,0,1))
+		.setColor(app.color(0,0,0,255)).setColorCursor(app.color(0,0,0,255)).setFont(font).getCaptionLabel().hide();
 	}
 	
-	public void hide() {
-		cp5.hide();
-	}
 	
 	public void drawScreen() {
-		
-		if(purchased==true) {
+		price=controller.getTripPrice();
+		if(purchased==true || paymentError==true) {
 			app.image(payScreen, -4, 0);
 			app.image(navBar, -4, 0);
 			app.fill(0,95);
 			app.rect(0,0,1280, 720);
-			app.image(paySuccess,394, 182);
+			if(purchased==true) {
+				app.image(paySuccess,394, 182);	
+			}
+			if(paymentError==true) {
+				app.image(payError,179, 273);
+			}
+			
 		}else {
 			app.image(payScreen, -4, 0);
 			app.image(navBar, -4, 0);
@@ -78,18 +100,61 @@ public class PayView {
 		
 		app.fill(0);
 		app.textSize(18);
+		app.textAlign(PConstants.LEFT);
 		app.text(passanger, 1017, 400);
+		app.text("$"+(int)(price), 1000, 350);
+		app.text("$"+(int)(price *passanger), 970, 510);
+	}
+	
+	
+	
+	private boolean purchase() {
+		boolean success=false;
+		cardNumber=cp5.get(Textfield.class, "Card Number").getText();
+		MMDD=cp5.get(Textfield.class, "MM/DD").getText();
+		CVV=cp5.get(Textfield.class, "CVV").getText();
+		installments=cp5.get(Textfield.class, "Installments").getText();
+	
 		
-		app.text(price *passanger, 1080, 493);
+	
+		boolean notemptyCardNumber = !cardNumber.equals("");
+		boolean notemptyMMDD = !MMDD.equals("");
+		boolean notemptyCVV = !CVV.equals("");
+		boolean notemptyInstallments = !installments.equals("");
+		
+		if(!notemptyCardNumber || !notemptyMMDD|| !notemptyCVV ||
+				!notemptyInstallments) {
+			paymentError=true;
+		}else {
+			int trip= controller.getAdminSystem().getTripType();
+			controller.addTrip(trip);
+			success=true;
+			}
+		if(success==true) {
+			cp5.get(Textfield.class, "Card Number").setText("");
+			cp5.get(Textfield.class, "MM/DD").setText("");
+			cp5.get(Textfield.class, "CVV").setText("");
+			cp5.get(Textfield.class, "Installments").setText("");
+		}
+		
+		return success;
 	}
 	
 	public int changeScreen() {
 		int screen=7;
-		if(purchased==true) {
-			if(app.mouseX>540 && app.mouseX<738 &&app.mouseY>520 && app.mouseY<567) {
-				screen=3;
-				purchased=false;
+		if(purchased==true || paymentError==true) {
+			if(purchased==true) {
+				if(app.mouseX>540 && app.mouseX<738 &&app.mouseY>520 && app.mouseY<567) {
+					screen=3;
+					purchased=false;
+				}	
 			}
+			if(paymentError==true) {
+				if(app.mouseX>550 && app.mouseX<752 &&app.mouseY>360 && app.mouseY<410) {
+					paymentError=false;
+				}
+			}
+			
 		}else {
 			if(app.mouseX>358 && app.mouseX<437 &&app.mouseY>28 && app.mouseY<43) {
 				screen=3;
@@ -101,7 +166,11 @@ public class PayView {
 				screen=9;
 			}
 			if(app.mouseX>886 && app.mouseX<1236 &&app.mouseY>578 && app.mouseY<632) {
-				purchased=true;
+				boolean success=purchase();
+				if(success) {
+					purchased=true;
+				}
+				
 			}
 			
 			if(app.mouseX>1045 && app.mouseX<1059 &&app.mouseY>387 && app.mouseY<396) {
@@ -116,6 +185,24 @@ public class PayView {
 			}
 		}
 		return screen;
+	}
+
+	public ControlP5 getCp5() {
+		return cp5;
+	}
+
+	public boolean isPurchased() {
+		return purchased;
+	}
+
+	public boolean isPaymentError() {
+		return paymentError;
+	}
+	public void clearTextFields() {
+		cp5.get(Textfield.class, "Card Number").setText("");
+		cp5.get(Textfield.class, "MM/DD").setText("");
+		cp5.get(Textfield.class, "CVV").setText("");
+		cp5.get(Textfield.class, "Installments").setText("");
 	}
 	
 }

@@ -6,12 +6,13 @@ import processing.core.PApplet;
 public class AdminSystem {
 	private ArrayList<User> users;
 	private int currentUser;
+	private int tripType;
 	private static AdminSystem onlyInstance;
 
 	private AdminSystem() {
 		users = new ArrayList<User>();
 		currentUser=0;
-		
+		tripType=0;
 	}
 	
 	public static AdminSystem getInstance() {
@@ -29,11 +30,15 @@ public class AdminSystem {
 		User u= new User("Elon", "Musk", "American", "elonmusk@tesla.com", "4791874423", "123", app);
 		users.add(u);
 	}
+	
+	
+	
+	
 	public void addUser(String name, String lastName, String nationality,String email, String phone, String password,
 			PApplet app) {
 		User u= new User(name, lastName, nationality, email, phone, password, app);
 		users.add(u);
-		for(int i = 0; i<users.size();i++) {
+		/*for(int i = 0; i<users.size();i++) {
 			System.out.println(users.get(i).getName());
 			System.out.println(users.get(i).getLastName());
 			System.out.println(users.get(i).getEmail());
@@ -41,7 +46,7 @@ public class AdminSystem {
 			System.out.println(users.get(i).getPhone());
 			System.out.println(users.get(i).getPassword());
 			System.out.println(">>>>>>>>><<<<<<<<<<");
-		}
+		}*/
 		
 	}
 	
@@ -92,6 +97,34 @@ public class AdminSystem {
 
 	public int getCurrentUser() {
 		return currentUser;
+	}
+
+	public void setTripType(int type) {
+		
+		tripType=type;
+		
+	}
+
+	public double getTripPrice() {
+		double price=0;
+		switch(tripType) {
+		case 1:
+			price=8000000.00;
+			break;
+		case 2:
+			price=850000.00;
+			break;
+		case 3:
+			price=2500.00;
+			break;
+		}
+		return price;
+		
+	}
+
+	public int getTripType() {
+		
+		return this.tripType;
 	}
 
 	

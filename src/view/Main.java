@@ -8,7 +8,7 @@ import processing.event.MouseEvent;
 
  * @author: Juan Pablo Sanin
 
- * @version: 1.4 11/7/2020
+ * @version: 1.5 11/16/2020
 
  */
 
@@ -37,7 +37,7 @@ public class Main extends PApplet {
 	}
 
 	public void setup() {
-		screen=3;
+		screen=1;
 		lv= new LoginView(this);
 		rv= new RegisterView(this);
 		hv= new HomeView(this);
@@ -57,7 +57,7 @@ public class Main extends PApplet {
 
 		switch(screen) {
 		case 1:
-			pv.hide();
+			
 			lv.drawScreen();
 			if(lv.isError() || lv.isCannotLoginError()) {
 				lv.getCp5().hide();
@@ -66,10 +66,12 @@ public class Main extends PApplet {
 			}
 			rv.getCp5().hide();
 			crv.getCp5().hide();
+			pv.getCp5().hide();
+	
 			
 			break;
 		case 2:
-			pv.hide();
+			
 			rv.drawScreen();
 			if(rv.isError() || rv.isRegisterError() || rv.isPasswordMatchError()) {
 				rv.getCp5().hide();
@@ -78,38 +80,57 @@ public class Main extends PApplet {
 			}
 			lv.getCp5().hide();
 			crv.getCp5().hide();
-			pv.hide();
+			pv.getCp5().hide();
+
 			break;
 		case 3:
-			pv.hide();
 			hv.drawScreen();
 			lv.getCp5().hide();
 			rv.getCp5().hide();
+			crv.getCp5().hide();
+			pv.getCp5().hide();
 			break;
 		case 4:
-			pv.hide();
+			mv.drawScreen();
 			lv.getCp5().hide();
 			rv.getCp5().hide();
-			mv.drawScreen();
+			crv.getCp5().hide();
+			pv.getCp5().hide();
 			break;
 		case 5:
-			pv.hide();
 			mnv.drawScreen();
+			lv.getCp5().hide();
+			rv.getCp5().hide();
+			crv.getCp5().hide();
+			pv.getCp5().hide();
 			break;
 		case 6:
-			pv.hide();
 			ev.drawScreen();
+			lv.getCp5().hide();
+			rv.getCp5().hide();
+			crv.getCp5().hide();
+			pv.getCp5().hide();
 			break;
 		case 7:
 			pv.drawScreen();
-			break;
-		case 8:
-			pv.hide();
-			cv.drawScreen();
+			if(pv.isPurchased()||pv.isPaymentError()) {
+				pv.getCp5().hide();
+			}else {
+				pv.getCp5().show();
+			}
+			lv.getCp5().hide();
+			rv.getCp5().hide();
 			crv.getCp5().hide();
 			break;
+		case 8:
+			cv.drawScreen();
+			crv.getCp5().hide();
+			lv.getCp5().hide();
+			rv.getCp5().hide();
+			pv.getCp5().hide();
+			
+			break;
 		case 9:
-			pv.hide();
 			crv.drawScreen();
 			if(crv.isError() || crv.isContactAdded()) {
 				crv.getCp5().hide();
@@ -118,12 +139,13 @@ public class Main extends PApplet {
 			}
 			rv.getCp5().hide();
 			lv.getCp5().hide();
+			pv.getCp5().hide();
 			break;
 		}
 		if(showProfile==true) {
 			pfv.drawProfile();
 		}
-		fill(0,255);
+		fill(255,255);
 		text(mouseX+","+mouseY, mouseX, mouseY);
 
 	}
@@ -153,30 +175,62 @@ public class Main extends PApplet {
 			switch(screen) {
 			case 1:
 				screen=lv.changeScreen();
+				rv.clearTextFields();
+				pv.clearTextFields();
+				crv.clearTextFields();
 				break;
 			case 2:
 				screen=rv.changeScreen();
+				lv.clearTextFields();
+				pv.clearTextFields();
+				crv.clearTextFields();
 				break;
 			case 3:
 				screen=hv.changeScreen();
+				lv.clearTextFields();
+				rv.clearTextFields();
+				pv.clearTextFields();
+				crv.clearTextFields();
 				break;
 			case 4:
 				screen=mv.changeScreen();
+				lv.clearTextFields();
+				rv.clearTextFields();
+				pv.clearTextFields();
+				crv.clearTextFields();
 				break;
 			case 5:
 				screen=mnv.changeScreen();
+				lv.clearTextFields();
+				rv.clearTextFields();
+				pv.clearTextFields();
+				crv.clearTextFields();
 				break;
 			case 6:
 				screen=ev.changeScreen();
+				lv.clearTextFields();
+				rv.clearTextFields();
+				pv.clearTextFields();
+				crv.clearTextFields();
 				break;
 			case 7:
 				screen=pv.changeScreen();
+				lv.clearTextFields();
+				rv.clearTextFields();
+				crv.clearTextFields();
 				break;
 			case 8:
 				screen=cv.changeScreen();
+				lv.clearTextFields();
+				rv.clearTextFields();
+				pv.clearTextFields();
+				crv.clearTextFields();
 				break;
 			case 9:
 				screen=crv.changeScreen();
+				lv.clearTextFields();
+				rv.clearTextFields();
+				pv.clearTextFields();
 				break;
 			}
 		}

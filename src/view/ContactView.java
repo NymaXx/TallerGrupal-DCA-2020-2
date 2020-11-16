@@ -43,7 +43,7 @@ public class ContactView {
 		addButtonUI = app.loadImage("../image/interactive/addButtonUI.png");
 		font = app.createFont("../font/Heebo-Regular.ttf", 18);
 		contactsY=173;
-		current=controller.getAdminSystem().getCurrentUser();
+		current=0;
 		/**sort will represent how the contacts are sorted 
 		0 is for not sorted
 		1 is for sorting by name
@@ -59,6 +59,7 @@ public class ContactView {
 	
 
 	public void drawScreen() {
+		current=controller.getAdminSystem().getCurrentUser();
 		app.background(255);
 		app.fill(240);
 		app.noStroke();

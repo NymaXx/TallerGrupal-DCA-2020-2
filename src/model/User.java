@@ -39,14 +39,14 @@ public class User extends Person{
 		nc= new NationalityComparator();
 		ec= new EmailComparator();
 		pc= new PhoneComparator();
-		contacts.add(new Contact("Juan","Sanin","Colombian","juan@gmail.com","3214567879",app));
+		/*contacts.add(new Contact("Juan","Sanin","Colombian","juan@gmail.com","3214567879",app));
 		contacts.add(new Contact("Carlos","Pedroza","Mexican","carlos@gmail.com","3147856968",app));
 		contacts.add(new Contact("Jorge","Lloreda","Spainiard","jorge@gmail.com","35466781223",app));
 		contacts.add(new Contact("Miguel","Tejada","Argentinian","miguel@gmail.com","3165664748",app));
 		contacts.add(new Contact("James","Conner","American","james@gmail.com","3187287459",app));
 		contacts.add(new Contact("Daniel","Robinson","English","daniel12@gmail.com","3183891259",app));
 		contacts.add(new Contact("Daniel","Jones","Maldivian","daniel420@gmail.com","3145647484",app));
-		contacts.add(new Contact("Juan Jose","Cortes","Colombian","juanjose@gmail.com","3447748553",app));
+		contacts.add(new Contact("Juan Jose","Cortes","Colombian","juanjose@gmail.com","3447748553",app));*/
 	
 	}
 
@@ -54,7 +54,7 @@ public class User extends Person{
 	public void addContact(String name, String lastName, String nationality, String email, String phone, PApplet app) {
 		Contact c= new Contact(name, lastName, nationality, email, phone, app);
 		contacts.add(c);
-		/*for(int i = 0; i<contacts.size();i++) {
+		for(int i = 0; i<contacts.size();i++) {
 			System.out.println(contacts.get(i).getName());
 			System.out.println(contacts.get(i).getLastName());
 			System.out.println(contacts.get(i).getEmail());
@@ -62,24 +62,28 @@ public class User extends Person{
 			System.out.println(contacts.get(i).getPhone());
 			System.out.println(">>>>>>>>><<<<<<<<<<");
 			
-		}*/
+		}
 	}
 	
 	public void purchaseTrip(int trip) {
 		switch(trip) {
 		case 1:
+			System.out.println("Mars");
 			Mars mars= new Mars();
 			trips.add(mars);
 			break;
 		case 2:
+			System.out.println("Moon");
 			Moon moon= new Moon();
 			trips.add(moon);
 			break;
 		case 3:
+			System.out.println("Inter");
 			Intercontinental inter= new Intercontinental();
 			trips.add(inter);
 			break;
 		}
+	
 	}
 	
 	

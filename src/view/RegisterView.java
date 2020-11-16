@@ -264,5 +264,14 @@ public class RegisterView {
 	public boolean isPasswordMatchError() {
 		return passwordMatchError;
 	}
+	public void clearTextFields() {
+		cp5.get(Textfield.class, "Name").setText("");
+		cp5.get(Textfield.class, "Last Name").setText("");
+		cp5.get(Textfield.class, "E-mail").setText("");
+		cp5.get(Textfield.class, "Nationality").setText("");
+		cp5.get(Textfield.class, "Phone Number").setText("");
+		cp5.get(Textfield.class, "Password").setText("");
+		cp5.get(Textfield.class, "Confirm Password").setText("");
+	}
 
 }

@@ -159,7 +159,7 @@ public class ContactRegisterView {
 			if(!notemptyName || !notemptyLastName || !notemptyEmail ||
 					!notemptyNationality||!notemptyPhone) {
 				error=true;
-				System.out.println("si");
+
 			}else {
 				controller.getContactInfo(name,lastName,nationality,email,phone, app);
 				success=true;
@@ -225,5 +225,12 @@ public class ContactRegisterView {
 	public boolean isContactAdded() {
 		return contactAdded;
 	}
-
+	
+	public void clearTextFields() {
+		cp5.get(Textfield.class, "Name").setText("");
+		cp5.get(Textfield.class, "Last Name").setText("");
+		cp5.get(Textfield.class, "E-mail").setText("");
+		cp5.get(Textfield.class, "Nationality").setText("");
+		cp5.get(Textfield.class, "Phone Number").setText("");
+	}
 }

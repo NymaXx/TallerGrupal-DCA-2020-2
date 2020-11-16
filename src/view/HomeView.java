@@ -1,6 +1,5 @@
 package view;
 
-import controller.Controller;
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -16,14 +15,13 @@ import processing.core.PImage;
 
 public class HomeView {
 
-	private Controller controller;
+
 	private PImage homeScreen, flightNavBar, arrow;
 	private int homeY,cardsY;
 	private boolean drawArrow;
 	private PApplet app;
 	
 	public HomeView(PApplet app) {
-		controller= new Controller();
 		this.app = app;
 		homeScreen = app.loadImage("../image/template/HOME.png");
 		flightNavBar=app.loadImage("../image/interactive/flightNavBar.png");

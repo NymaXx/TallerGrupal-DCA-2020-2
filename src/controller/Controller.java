@@ -15,9 +15,6 @@ public class Controller {
 		adminSystem.sort(sort);
 	}
 	
-	public void addContact() {}
-
-
 	public void getUserInfo(String name, String lastName,String nationality, String email,  String phone,
 			String password, PApplet app) {
 		adminSystem.addUser(name,lastName,nationality,email,phone,password, app);
@@ -55,6 +52,15 @@ public class Controller {
 	public AdminSystem getAdminSystem() {
 		return adminSystem;
 	}
+
+	public void setTripType(int type) {
+		adminSystem.setTripType(type);
+	}
+	
+	public double getTripPrice() {
+		return adminSystem.getTripPrice();
+	}
+	
 	
 	
 

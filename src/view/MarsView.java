@@ -53,7 +53,9 @@ public class MarsView {
 			screen=9;
 		}
 		if(app.mouseX>1019 && app.mouseX<1210 &&app.mouseY>622 && app.mouseY<684){
+			controller.setTripType(1);
 			screen=7;
+			
 			
 		}
 		return screen;

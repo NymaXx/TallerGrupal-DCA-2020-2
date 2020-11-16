@@ -1,9 +1,8 @@
 package view;
 
-import controlP5.ControlP5;
-import controlP5.Textfield;
 import controller.Controller;
 import processing.core.PApplet;
+import processing.core.PFont;
 import processing.core.PImage;
 
 /**
@@ -21,6 +20,9 @@ public class ContactView {
 	cellPhoneSortBar,emailSortBar;
 	private PImage addButton, addButtonUI;
 	private int sort;
+	private int current;
+	private int contactsY;
+	private PFont font;
 	private PApplet app;
 	
 	
@@ -39,7 +41,9 @@ public class ContactView {
 		emailSortBar=app.loadImage("../image/interactive/emailSortBar.png");
 		addButton = app.loadImage("../image/interactive/addButton.png");
 		addButtonUI = app.loadImage("../image/interactive/addButtonUI.png");
-
+		font = app.createFont("../font/Heebo-Regular.ttf", 18);
+		contactsY=173;
+		current=controller.getAdminSystem().getCurrentUser();
 		/**sort will represent how the contacts are sorted 
 		0 is for not sorted
 		1 is for sorting by name
@@ -56,6 +60,28 @@ public class ContactView {
 
 	public void drawScreen() {
 		app.background(255);
+		app.fill(240);
+		app.noStroke();
+		app.rect(323, 127, 634, 673);
+		
+		
+		
+		
+		if(controller.getAdminSystem().getUsers().get(current).getContacts().isEmpty()) {
+			if(app.mouseX>534 && app.mouseX<733 &&app.mouseY>420 && app.mouseY<467) {
+				app.image(addButtonUI, 515, 360);
+			}else {
+				app.image(addButton, 515, 360);
+			}
+		}
+		
+		if(!controller.getAdminSystem().getUsers().get(current).getContacts().isEmpty()) {
+			for (int i = 0; i < controller.getAdminSystem().getUsers().get(current).getContacts().size(); i++) {
+				controller.getAdminSystem().getUsers().get(current).getContacts().get(i).setFont(font);
+				controller.getAdminSystem().getUsers().get(current).getContacts().get(i).draw(contactsY+(i*125));
+			}
+			
+		}	
 		switch(sort) {
 		case 0:
 			app.image(emptySortBar, -4, 72);
@@ -78,15 +104,11 @@ public class ContactView {
 
 		}
 		app.image(navigation, -4, 0);
-		//If list empty show this
-		
-		if(app.mouseX>534 && app.mouseX<733 &&app.mouseY>420 && app.mouseY<467) {
-			app.image(addButtonUI, 515, 360);
-		}else {
-			app.image(addButton, 515, 360);
-		}
-		 
 
+		/*for (int i = 0; i < controller.getDogList().getDogList().size(); i++) {
+			controller.getDogList().getDogList().get(i).draw(25+(i*130));
+		}*/
+		
 	}
 
 	public int changeScreen() {
@@ -101,29 +123,53 @@ public class ContactView {
 			screen=9;
 		}
 		
-		//If list is empty
+		if(controller.getAdminSystem().getUsers().get(controller.getAdminSystem().getCurrentUser()).getContacts().isEmpty()) {
 		if(app.mouseX>534 && app.mouseX<733 &&app.mouseY>420 && app.mouseY<467) {
 			screen=9;
 		}
-
+		}else {
+			if(app.mouseX>0 && app.mouseX<260 && app.mouseY>70 && app.mouseY<125) {
+				sort=1;
+				contactsY=173;
+			}
+			if(app.mouseX>260 && app.mouseX<515 &&  app.mouseY>70 && app.mouseY<125) {
+				sort=2;
+				contactsY=173;
+			}
+			if(app.mouseX>515 && app.mouseX<765 && app.mouseY>70 && app.mouseY<125) {
+				sort=3;
+				contactsY=173;
+			}
+			if(app.mouseX>765 && app.mouseX<1015 &&  app.mouseY>70 && app.mouseY<125) {
+				sort=4;
+				contactsY=173;
+			}
+			if(app.mouseX>1015 && app.mouseX<1280 &&  app.mouseY>70 && app.mouseY<125) {
+				sort=5;
+				contactsY=173;
+			}
+			controller.sort(sort);
+		}
 		
-		if(app.mouseX>0 && app.mouseX<260 && app.mouseY>70 && app.mouseY<125) {
-			sort=1;
-		}
-		if(app.mouseX>260 && app.mouseX<515 &&  app.mouseY>70 && app.mouseY<125) {
-			sort=2;
-		}
-		if(app.mouseX>515 && app.mouseX<765 && app.mouseY>70 && app.mouseY<125) {
-			sort=3;
-		}
-		if(app.mouseX>765 && app.mouseX<1015 &&  app.mouseY>70 && app.mouseY<125) {
-			sort=4;
-		}
-		if(app.mouseX>1015 && app.mouseX<1280 &&  app.mouseY>70 && app.mouseY<125) {
-			sort=5;
-		}
-
+		
 		return screen;
+	}
+
+
+
+	public void scroll(float e) {
+		if(e>0) {
+			if(contactsY>-((controller.getAdminSystem().getUsers().get(current).getContacts().size()*125)-720)) {
+				contactsY-=25;	
+			}
+			
+		}
+		if(e<0) {
+			if(contactsY<173) {
+			contactsY+=25;	
+			}
+		}
+		
 	}
 	
 

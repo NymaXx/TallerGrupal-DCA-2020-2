@@ -21,7 +21,9 @@ public class AdminSystem {
 		return onlyInstance;
 	}
 	
-	public void sort() {}
+	public void sort(int sort) {
+		users.get(currentUser).sortContacts(sort);
+	}
 	
 	public void initialUser(PApplet app) {
 		User u= new User("Elon", "Musk", "American", "elonmusk@tesla.com", "4791874423", "123", app);
@@ -70,8 +72,8 @@ public class AdminSystem {
 		return success;
 	}
 
-	public void drawUser() {
-		users.get(currentUser).draw();
+	public void drawUser(int y) {
+		users.get(currentUser).draw(y);
 		
 	}
 

@@ -11,7 +11,9 @@ public class Controller {
 		adminSystem= AdminSystem.getInstance();
 	}
 	
-	public void sort() {}
+	public void sort(int sort) {
+		adminSystem.sort(sort);
+	}
 	
 	public void addContact() {}
 
@@ -34,8 +36,8 @@ public class Controller {
 		adminSystem.initialUser(app);
 	}
 
-	public void drawUser() {
-		adminSystem.drawUser();
+	public void drawUser(int y) {
+		adminSystem.drawUser(y);
 		
 	}
 	
@@ -49,5 +51,11 @@ public class Controller {
 		adminSystem.addContact(name,lastName,nationality,email,phone,app);
 		
 	}
+
+	public AdminSystem getAdminSystem() {
+		return adminSystem;
+	}
+	
+	
 
 }

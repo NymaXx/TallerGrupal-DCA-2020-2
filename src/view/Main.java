@@ -37,7 +37,7 @@ public class Main extends PApplet {
 	}
 
 	public void setup() {
-		screen=1;
+		screen=3;
 		lv= new LoginView(this);
 		rv= new RegisterView(this);
 		hv= new HomeView(this);
@@ -123,7 +123,7 @@ public class Main extends PApplet {
 		if(showProfile==true) {
 			pfv.drawProfile();
 		}
-		fill(255,255);
+		fill(0,255);
 		text(mouseX+","+mouseY, mouseX, mouseY);
 
 	}
@@ -188,6 +188,9 @@ public class Main extends PApplet {
 		switch(screen) {
 		case 3:
 			hv.scroll(e);
+			break;
+		case 8:
+			cv.scroll(e);
 			break;
 		}
 

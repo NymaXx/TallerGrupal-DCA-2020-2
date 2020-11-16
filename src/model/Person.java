@@ -31,7 +31,7 @@ public abstract class Person {
 		this.app = app;
 	}
 	
-	public abstract void draw();
+	public abstract void draw(int y);
 	
 	//Getters and Setters
 	public String getName() {

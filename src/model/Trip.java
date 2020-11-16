@@ -1,12 +1,10 @@
 package model;
-
-
 /**
  * Class for representing a trip in the program
 
  * @author: Juan P. Sanin
 
- * @version: 1.0 11/7/2020
+ * @version: 1.0 11/16/2020
 
  */
 public class Trip {
@@ -15,10 +13,22 @@ public class Trip {
 	private String duration;
 	
 	
+	/** 
+	 * 
+	 *	Constructor method for trip <br>
+		<b> pre: </b> <br>
+		<b> post: </b> Creates a trip<br>
+		@param price, the trips price
+		@param duration, trip duration
+	 */
 	public Trip(double price, String duration) {
 		this.price = price;
 		this.duration = duration;
 	}
+	
+	/**
+	 * Getters and Setters
+	 */
 
 	public double getPrice() {
 		return price;

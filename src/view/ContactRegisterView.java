@@ -7,11 +7,11 @@ import processing.core.PApplet;
 import processing.core.PFont;
 import processing.core.PImage;
 /**
- * Contact Register view class 
+ * Contact Register view class Final Version
 
  * @author: Juan P. Sanin
 
- * @version: 1.0 11/16/2020
+ * @version: 1.1 11/16/2020
 
  */
 public class ContactRegisterView {
@@ -25,21 +25,29 @@ public class ContactRegisterView {
 	private PImage emailB;
 	private PImage cellB;
 	private PFont font;
-	
+
 	private boolean contactAdded;
 	private PApplet app;
-	
+
 	private String name;
 	private String lastName;
 	private String nationality;
 	private String email;
 	private String phone;
-	
+
 	private String[] inputs;
 	private ControlP5 cp5;
 	private boolean error;
 
 
+	
+	/** 
+	 * 
+	 *	Constructor method for ContactRegisterView <br>
+		<b> pre: </b> <br>
+		<b> post: </b> Creates the visualization of the contact register screen<br>
+	 * @param app, PApplet processing core
+	 */
 	public ContactRegisterView(PApplet app) {
 		controller=new Controller();
 		this.app = app;
@@ -54,48 +62,62 @@ public class ContactRegisterView {
 		natiB = app.loadImage("../image/box/natiRect.png");
 		emailB = app.loadImage("../image/box/emailRect.png");
 		cellB = app.loadImage("../image/box/cellRect.png");
-		
+
 		font = app.createFont("../font/Heebo-Regular.ttf", 16);
-		
+
 		contactAdded=false;
 		error=false;
-		
+
 		cp5 = new ControlP5(app);
 		inputs = new String[5];
 		initializeTextFields();
 	}
-	
-	//add new contact Screen-------------------
-			private void initializeTextFields() {
-				inputs[0] = "Name";
-				inputs[1] = "Last Name";
-				inputs[2] = "E-mail";
-				inputs[3] = "Nationality";
-				inputs[4] = "Phone Number";
 
-				
-				cp5.addTextfield(inputs[0]).setPosition(205,252).setSize(406, 51).setAutoClear(true).setColorValue(app.color(255))
-				.setColorActive(app.color(0,0,0,1)).setColorBackground(app.color(0,0,0,1)).setColorForeground(app.color(0,0,0,1))
-				.setColor(app.color(0,0,0,255)).setColorCursor(app.color(0,0,0,255)).setFont(font).getCaptionLabel().hide();
-				
-				cp5.addTextfield(inputs[1]).setPosition(670,251).setSize(406, 51).setAutoClear(true).setColorValue(app.color(255))
-				.setColorActive(app.color(0,0,0,1)).setColorBackground(app.color(0,0,0,1)).setColorForeground(app.color(0,0,0,1))
-				.setColor(app.color(0,0,0,255)).setColorCursor(app.color(0,0,0,255)).setFont(font).getCaptionLabel().hide();
-				
-				cp5.addTextfield(inputs[2]).setPosition(205,329).setSize(406, 51).setAutoClear(true).setColorValue(app.color(255))
-				.setColorActive(app.color(0,0,0,1)).setColorBackground(app.color(0,0,0,1)).setColorForeground(app.color(0,0,0,1))
-				.setColor(app.color(0,0,0,255)).setColorCursor(app.color(0,0,0,255)).setFont(font).getCaptionLabel().hide();
-				
-				cp5.addTextfield(inputs[3]).setPosition(670,329).setSize(406, 51).setAutoClear(true).setColorValue(app.color(255))
-				.setColorActive(app.color(0,0,0,1)).setColorBackground(app.color(0,0,0,1)).setColorForeground(app.color(0,0,0,1))
-				.setColor(app.color(0,0,0,255)).setColorCursor(app.color(0,0,0,255)).setFont(font).getCaptionLabel().hide();
-				
-				cp5.addTextfield(inputs[4]).setPosition(205,405).setSize(406, 51).setAutoClear(true).setColorValue(app.color(255))
-				.setColorActive(app.color(0,0,0,1)).setColorBackground(app.color(0,0,0,1)).setColorForeground(app.color(0,0,0,1))
-				.setColor(app.color(0,0,0,255)).setColorCursor(app.color(0,0,0,255)).setFont(font).getCaptionLabel().hide();
-				
-			}
-			
+	
+	
+	
+	/** 
+	 * 
+	 *	Method for initializing textFields<br>
+		<b> pre: </b> <br>
+		<b> post: </b>initializes textFields with position, size, color and font<br>
+	 */
+	private void initializeTextFields() {
+		inputs[0] = "Name";
+		inputs[1] = "Last Name";
+		inputs[2] = "E-mail";
+		inputs[3] = "Nationality";
+		inputs[4] = "Phone Number";
+
+
+		cp5.addTextfield(inputs[0]).setPosition(205,252).setSize(406, 51).setAutoClear(true).setColorValue(app.color(255))
+		.setColorActive(app.color(0,0,0,1)).setColorBackground(app.color(0,0,0,1)).setColorForeground(app.color(0,0,0,1))
+		.setColor(app.color(0,0,0,255)).setColorCursor(app.color(0,0,0,255)).setFont(font).getCaptionLabel().hide();
+
+		cp5.addTextfield(inputs[1]).setPosition(670,251).setSize(406, 51).setAutoClear(true).setColorValue(app.color(255))
+		.setColorActive(app.color(0,0,0,1)).setColorBackground(app.color(0,0,0,1)).setColorForeground(app.color(0,0,0,1))
+		.setColor(app.color(0,0,0,255)).setColorCursor(app.color(0,0,0,255)).setFont(font).getCaptionLabel().hide();
+
+		cp5.addTextfield(inputs[2]).setPosition(205,329).setSize(406, 51).setAutoClear(true).setColorValue(app.color(255))
+		.setColorActive(app.color(0,0,0,1)).setColorBackground(app.color(0,0,0,1)).setColorForeground(app.color(0,0,0,1))
+		.setColor(app.color(0,0,0,255)).setColorCursor(app.color(0,0,0,255)).setFont(font).getCaptionLabel().hide();
+
+		cp5.addTextfield(inputs[3]).setPosition(670,329).setSize(406, 51).setAutoClear(true).setColorValue(app.color(255))
+		.setColorActive(app.color(0,0,0,1)).setColorBackground(app.color(0,0,0,1)).setColorForeground(app.color(0,0,0,1))
+		.setColor(app.color(0,0,0,255)).setColorCursor(app.color(0,0,0,255)).setFont(font).getCaptionLabel().hide();
+
+		cp5.addTextfield(inputs[4]).setPosition(205,405).setSize(406, 51).setAutoClear(true).setColorValue(app.color(255))
+		.setColorActive(app.color(0,0,0,1)).setColorBackground(app.color(0,0,0,1)).setColorForeground(app.color(0,0,0,1))
+		.setColor(app.color(0,0,0,255)).setColorCursor(app.color(0,0,0,255)).setFont(font).getCaptionLabel().hide();
+
+	}
+
+	/** 
+	 * 
+	 *	Method for drawing the Contact Register Screen<br>
+		<b> pre: </b> <br>
+		<b> post: </b>Draws the contact register screen<br>
+	 */
 	public void drawScreen() {
 		if(error==true||contactAdded==true) {
 			app.image(registerContactScreen, 0,72);
@@ -110,12 +132,12 @@ public class ContactRegisterView {
 			app.image(addContactButton, 541, 591);
 			app.fill(0,95);
 			app.rect(0,0,1280, 720);
-			
-			
+
+
 			if(contactAdded==true){
 				app.image(added,130, 218);
 			}
-			
+
 			if(error==true) {
 				app.image(errorMessageC,179, 273);
 			}
@@ -129,7 +151,7 @@ public class ContactRegisterView {
 			app.image(cellB, 202,405);
 			app.tint(255, 255); 
 			app.image(navBar, -4, 0);
-			
+
 			if(app.mouseX>541 && app.mouseX<739 &&app.mouseY>591 && app.mouseY<638) {
 				app.image(addContactButtonUI, 541, 591);
 			}else {
@@ -138,47 +160,62 @@ public class ContactRegisterView {
 		}
 
 	}
-	
-		
-		private boolean contactRegister() {
-			boolean success=false;
-			name=cp5.get(Textfield.class, "Name").getText();
-			lastName=cp5.get(Textfield.class, "Last Name").getText();
-			email=cp5.get(Textfield.class, "E-mail").getText();
-			nationality=cp5.get(Textfield.class, "Nationality").getText();
-			phone=cp5.get(Textfield.class, "Phone Number").getText();
-			
-			
-			boolean notemptyName = !name.equals("");
-			boolean notemptyLastName = !lastName.equals("");
-			boolean notemptyEmail = !email.equals("");
-			boolean notemptyNationality = !nationality.equals("");
-			boolean notemptyPhone = !phone.equals("");
-			
-			
-			if(!notemptyName || !notemptyLastName || !notemptyEmail ||
-					!notemptyNationality||!notemptyPhone) {
-				error=true;
 
-			}else {
-				controller.getContactInfo(name,lastName,nationality,email,phone, app);
-				success=true;
-				contactAdded=true;
-			}
-				
-			if(success==true) {
-				cp5.get(Textfield.class, "Name").setText("");
-				cp5.get(Textfield.class, "Last Name").setText("");
-				cp5.get(Textfield.class, "E-mail").setText("");
-				cp5.get(Textfield.class, "Nationality").setText("");
-				cp5.get(Textfield.class, "Phone Number").setText("");
-				
-			}
-			return success;
+
+	
+	/** 
+	 * 
+	 *	Method for registering a Contact<br>
+		<b> pre: </b> <br>
+		<b> post: </b>Registers a contact or not depending on the inputs<br>
+		@return success, a boolean representing if the contact was registered successfully or not
+	 */
+	private boolean contactRegister() {
+		boolean success=false;
+		name=cp5.get(Textfield.class, "Name").getText();
+		lastName=cp5.get(Textfield.class, "Last Name").getText();
+		email=cp5.get(Textfield.class, "E-mail").getText();
+		nationality=cp5.get(Textfield.class, "Nationality").getText();
+		phone=cp5.get(Textfield.class, "Phone Number").getText();
+
+
+		boolean notemptyName = !name.equals("");
+		boolean notemptyLastName = !lastName.equals("");
+		boolean notemptyEmail = !email.equals("");
+		boolean notemptyNationality = !nationality.equals("");
+		boolean notemptyPhone = !phone.equals("");
+
+
+		if(!notemptyName || !notemptyLastName || !notemptyEmail ||
+				!notemptyNationality||!notemptyPhone) {
+			error=true;
+
+		}else {
+			controller.getContactInfo(name,lastName,nationality,email,phone, app);
+			success=true;
+			contactAdded=true;
 		}
-		//-----------------------
 
+		if(success==true) {
+			cp5.get(Textfield.class, "Name").setText("");
+			cp5.get(Textfield.class, "Last Name").setText("");
+			cp5.get(Textfield.class, "E-mail").setText("");
+			cp5.get(Textfield.class, "Nationality").setText("");
+			cp5.get(Textfield.class, "Phone Number").setText("");
+
+		}
+		return success;
+	}
 	
+
+
+	/** 
+	 * 
+	 *	Method for changing screens<br>
+		<b> pre: </b> <br>
+		<b> post: </b>Changes screens depending on the click<br>
+		@return screen, the screen where the program should go
+	 */
 	public int changeScreen() {
 		int screen=9;
 		if(contactAdded==true || error==true) {
@@ -190,7 +227,7 @@ public class ContactRegisterView {
 				if(error==true) {
 					error=false;
 				}
-				
+
 			}
 		}else {
 			if(app.mouseX>358 && app.mouseX<437 &&app.mouseY>28 && app.mouseY<43) {
@@ -205,7 +242,7 @@ public class ContactRegisterView {
 				if(success==true) {
 					contactAdded=true;
 				}
-				
+
 			}
 		}
 
@@ -213,19 +250,13 @@ public class ContactRegisterView {
 		return screen;
 	}
 	
-	public ControlP5 getCp5() {
-		return cp5;
-	}
-
-	public boolean isError() {
-		
-		return error;
-	}
-
-	public boolean isContactAdded() {
-		return contactAdded;
-	}
 	
+	/** 
+	 * 
+	 *	Method for clearing the text fields<br>
+		<b> pre: </b> <br>
+		<b> post: </b>Clears text fields<br>
+	 */
 	public void clearTextFields() {
 		cp5.get(Textfield.class, "Name").setText("");
 		cp5.get(Textfield.class, "Last Name").setText("");
@@ -233,4 +264,22 @@ public class ContactRegisterView {
 		cp5.get(Textfield.class, "Nationality").setText("");
 		cp5.get(Textfield.class, "Phone Number").setText("");
 	}
+
+	/**  
+	 *	Getters
+	 */
+	public ControlP5 getCp5() {
+		return cp5;
+	}
+
+	public boolean isError() {
+
+		return error;
+	}
+
+	public boolean isContactAdded() {
+		return contactAdded;
+	}
+
+
 }

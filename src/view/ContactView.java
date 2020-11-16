@@ -6,11 +6,11 @@ import processing.core.PFont;
 import processing.core.PImage;
 
 /**
- * Contact view class 
+ * Contact view class Final Version
 
  * @author: Juan P. Sanin
 
- * @version: 1.0 11/9/2020
+ * @version: 1.1 11/16/2020
 
  */   
 public class ContactView {
@@ -25,10 +25,14 @@ public class ContactView {
 	private PFont font;
 	private PApplet app;
 	
-	
-	
 
-
+	/** 
+	 * 
+	 *	Constructor method for ContactView <br>
+		<b> pre: </b> <br>
+		<b> post: </b> Creates the visualization of the contacts screen<br>
+	 * @param app, PApplet processing core
+	 */
 	public ContactView(PApplet app) {
 		controller= new Controller();
 		this.app = app;	
@@ -44,7 +48,8 @@ public class ContactView {
 		font = app.createFont("../font/Heebo-Regular.ttf", 18);
 		contactsY=173;
 		current=0;
-		/**sort will represent how the contacts are sorted 
+		
+		/*sort will represent how the contacts are sorted 
 		0 is for not sorted
 		1 is for sorting by name
 		2 is for sorting by nationality
@@ -57,16 +62,18 @@ public class ContactView {
 	}
 	
 	
-
+	/** 
+	 * 
+	 *	Method for drawing the ContactsScreen<br>
+		<b> pre: </b> <br>
+		<b> post: </b>Draws the contacts screen<br>
+	 */
 	public void drawScreen() {
 		current=controller.getAdminSystem().getCurrentUser();
 		app.background(255);
 		app.fill(240);
 		app.noStroke();
 		app.rect(323, 127, 634, 673);
-		
-		
-		
 		
 		if(controller.getAdminSystem().getUsers().get(current).getContacts().isEmpty()) {
 			if(app.mouseX>534 && app.mouseX<733 &&app.mouseY>420 && app.mouseY<467) {
@@ -105,13 +112,17 @@ public class ContactView {
 
 		}
 		app.image(navigation, -4, 0);
-
-		/*for (int i = 0; i < controller.getDogList().getDogList().size(); i++) {
-			controller.getDogList().getDogList().get(i).draw(25+(i*130));
-		}*/
 		
 	}
 
+	
+	/** 
+	 * 
+	 *	Method for changing screens<br>
+		<b> pre: </b> <br>
+		<b> post: </b>Changes screens depending on the click<br>
+		@return screen, the screen where the program should go
+	 */
 	public int changeScreen() {
 		int screen=8;
 
@@ -157,7 +168,13 @@ public class ContactView {
 	}
 
 
-
+	/** 
+	 * 
+	 *	Method for scrolling<br>
+		<b> pre: </b> <br>
+		<b> post: </b>Scrolls if it is possible<br>
+		@param e, represents the direction of the scroll
+	 */
 	public void scroll(float e) {
 		if(e>0) {
 			if(contactsY>-((controller.getAdminSystem().getUsers().get(current).getContacts().size()*125)-720)) {

@@ -8,11 +8,11 @@ import processing.core.PConstants;
 import processing.core.PFont;
 import processing.core.PImage;
 /**
- * Moon view class 
+ * Pay view class Final Version
 
  * @author: Juan P. Sanin
 
- * @version: 1.3 11/16/2020
+ * @version: 1.4 11/16/2020
 
  */
 public class PayView {
@@ -32,7 +32,13 @@ public class PayView {
 	private double price;
 	private boolean paymentError;
 	
-
+	/** 
+	 * 
+	 *	Constructor method for PayView <br>
+		<b> pre: </b> <br>
+		<b> post: </b> Creates the visualization of the paying screen<br>
+	 * @param app, PApplet processing core
+	 */
 	public PayView(PApplet app) {
 		controller= new Controller();
 		this.app = app;
@@ -51,6 +57,13 @@ public class PayView {
 		initializeTextFields();
 	}
 	
+	
+	/** 
+	 * 
+	 *	Method for initializing textFields<br>
+		<b> pre: </b> <br>
+		<b> post: </b>initializes textFields with position, size, color and font<br>
+	 */
 	private void initializeTextFields() {
 		inputs[0] = "Card Number";
 		inputs[1] = "MM/DD";
@@ -74,7 +87,12 @@ public class PayView {
 		.setColor(app.color(0,0,0,255)).setColorCursor(app.color(0,0,0,255)).setFont(font).getCaptionLabel().hide();
 	}
 	
-	
+	/** 
+	 * 
+	 *	Method for drawing the pay Screen<br>
+		<b> pre: </b> <br>
+		<b> post: </b>Draws the pay screen<br>
+	 */
 	public void drawScreen() {
 		price=controller.getTripPrice();
 		if(purchased==true || paymentError==true) {
@@ -107,7 +125,13 @@ public class PayView {
 	}
 	
 	
-	
+	/** 
+	 * 
+	 *	Method for purchasing<br>
+		<b> pre: </b> <br>
+		<b> post: </b>Purchases the trip or not depending on inputs<br>
+		@return success, a boolean representing if a purchase is successful or not
+	 */
 	private boolean purchase() {
 		boolean success=false;
 		cardNumber=cp5.get(Textfield.class, "Card Number").getText();
@@ -140,6 +164,14 @@ public class PayView {
 		return success;
 	}
 	
+	
+	/** 
+	 * 
+	 *	Method for changing screens<br>
+		<b> pre: </b> <br>
+		<b> post: </b>Changes screens depending on the click<br>
+		@return screen, the screen where the program should go
+	 */
 	public int changeScreen() {
 		int screen=7;
 		if(purchased==true || paymentError==true) {
@@ -187,6 +219,23 @@ public class PayView {
 		return screen;
 	}
 
+	/** 
+	 * 
+	 *	Method for clearing the text fields<br>
+		<b> pre: </b> <br>
+		<b> post: </b>Clears text fields<br>
+	 */
+	public void clearTextFields() {
+		cp5.get(Textfield.class, "Card Number").setText("");
+		cp5.get(Textfield.class, "MM/DD").setText("");
+		cp5.get(Textfield.class, "CVV").setText("");
+		cp5.get(Textfield.class, "Installments").setText("");
+	}
+	
+	/** 
+	 * Getters
+	 */
+
 	public ControlP5 getCp5() {
 		return cp5;
 	}
@@ -198,11 +247,6 @@ public class PayView {
 	public boolean isPaymentError() {
 		return paymentError;
 	}
-	public void clearTextFields() {
-		cp5.get(Textfield.class, "Card Number").setText("");
-		cp5.get(Textfield.class, "MM/DD").setText("");
-		cp5.get(Textfield.class, "CVV").setText("");
-		cp5.get(Textfield.class, "Installments").setText("");
-	}
+	
 	
 }

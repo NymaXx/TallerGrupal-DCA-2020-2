@@ -4,10 +4,11 @@ import processing.core.PApplet;
 
 /**
  * Abstract class for representing a person in the program
+ * Final Version
 
  * @author: Juan P. Sanin
 
- * @version: 1.0 11/7/2020
+ * @version: 1.1 11/16/2020
 
  */
 
@@ -20,7 +21,17 @@ public abstract class Person {
 	private String phone;
 	private PApplet app;
 	
-	//Constructor
+	/**
+	 * Constructor Method for person<br>
+		<b> pre: </b> <br>
+		<b> post: </b> Creates person<br>
+		@param name, the persons name
+		@param lastName, the persons last name
+		@param nationality, the persons nationality
+		@param email, the persons email
+		@param phone, the persons phone
+		@param app, PApplet processing core
+	 */
 	public Person(String name, String lastName, String nationality, String email, String phone, PApplet app) {
 		super();
 		this.name = name;
@@ -33,7 +44,10 @@ public abstract class Person {
 	
 	public abstract void draw(int y);
 	
-	//Getters and Setters
+	/**
+	 * Getters and Setters
+	 *
+	 */
 	public String getName() {
 		return name;
 	}

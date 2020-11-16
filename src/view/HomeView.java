@@ -4,11 +4,11 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 /**
- * Home view class 
+ * Home view class final version
 
  * @author: Juan P. Sanin
 
- * @version: 1.0 11/9/2020
+ * @version: 1.1 11/16/2020
 
  */
 	
@@ -21,6 +21,14 @@ public class HomeView {
 	private boolean drawArrow;
 	private PApplet app;
 	
+	
+	/** 
+	 * 
+	 *	Constructor method for HomeView <br>
+		<b> pre: </b> <br>
+		<b> post: </b> Creates the visualization of the home screen<br>
+	 * @param app, PApplet processing core
+	 */
 	public HomeView(PApplet app) {
 		this.app = app;
 		homeScreen = app.loadImage("../image/template/HOME.png");
@@ -33,6 +41,12 @@ public class HomeView {
 		
 	}
 	
+	/** 
+	 * 
+	 *	Method for drawing the Home Screen<br>
+		<b> pre: </b> <br>
+		<b> post: </b>Draws the home screen<br>
+	 */
 	public void drawScreen() {
 		app.image(homeScreen, -4,homeY);
 		app.image(flightNavBar, -4, 0);
@@ -42,6 +56,14 @@ public class HomeView {
 		
 	}
 	
+	
+	/** 
+	 * 
+	 *	Method for changing screens<br>
+		<b> pre: </b> <br>
+		<b> post: </b>Changes screens depending on the click<br>
+		@return screen, the screen where the program should go
+	 */
 	public int changeScreen() {
 		int screen=3;
 		if(app.mouseX>185 && app.mouseX<442 &&app.mouseY>cardsY && app.mouseY<cardsY+259) {
@@ -80,6 +102,14 @@ public class HomeView {
 		return screen;
 	}
 
+	
+	/** 
+	 * 
+	 *	Method for scrolling<br>
+		<b> pre: </b> <br>
+		<b> post: </b>Scrolls if it is possible<br>
+		@param e, represents the direction of the scroll
+	 */
 	public void scroll(float e) {
 		if(e>0) {
 			if(homeY>-646) {
@@ -98,7 +128,12 @@ public class HomeView {
 		}
 		
 	}
-
+	
+	
+	/** 
+	 * 
+	 *	Setters
+	 */
 	public void setHomeY(int homeY) {
 		this.homeY = homeY;
 	}

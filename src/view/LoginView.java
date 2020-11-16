@@ -8,11 +8,11 @@ import processing.core.PFont;
 import processing.core.PImage;
 
 /**
- * Login view class 
+ * Login view class  Final Version
 
  * @author: Juan P. Sanin
 
- * @version: 1.1 11/14/2020
+ * @version: 1.2 11/16/2020
 
  */
 public class LoginView {
@@ -36,7 +36,13 @@ public class LoginView {
 
 	private PApplet app;
 	
-
+	/** 
+	 * 
+	 *	Constructor method for LoginView <br>
+		<b> pre: </b> <br>
+		<b> post: </b> Creates the visualization of the login screen<br>
+	 * @param app, PApplet processing core
+	 */
 	public LoginView(PApplet app) {
 		controller= new Controller();
 		this.app = app;
@@ -60,6 +66,12 @@ public class LoginView {
 
 	}
 
+	/** 
+	 * 
+	 *	Method for initializing textFields<br>
+		<b> pre: </b> <br>
+		<b> post: </b>initializes textFields with position, size, color and font<br>
+	 */
 	private void initializeTextFields() {
 		inputs[0] = "Email";
 		inputs[1] = "Password";
@@ -74,7 +86,12 @@ public class LoginView {
 
 	}
 
-
+	/** 
+	 * 
+	 *	Method for drawing the Login Screen<br>
+		<b> pre: </b> <br>
+		<b> post: </b>Draws the login screen<br>
+	 */
 	public void drawScreen() {
 		if(error==true || cannotLoginError==true) {
 			app.image(loginScreen, 0,0);
@@ -112,6 +129,13 @@ public class LoginView {
 	}
 
 
+	/** 
+	 * 
+	 *	Method for changing screens<br>
+		<b> pre: </b> <br>
+		<b> post: </b>Changes screens depending on the click<br>
+		@return screen, the screen where the program should go
+	 */
 	public int changeScreen() {
 		int screen=1;
 		if(error==false && cannotLoginError==false) {
@@ -147,7 +171,13 @@ public class LoginView {
 		return screen;
 	}
 
-
+	/** 
+	 * 
+	 *	Method for login in<br>
+		<b> pre: </b> <br>
+		<b> post: </b>Logs in or not depending on the inputs<br>
+		@return success, a boolean representing if the user logged in successfully or not
+	 */
 	private boolean login() {
 		boolean success=false;
 		email=cp5.get(Textfield.class, "Email").getText();
@@ -168,10 +198,21 @@ public class LoginView {
 
 	}
 	
-	public void hide() {
-		cp5.hide();
+	/** 
+	 * 
+	 *	Method for clearing the text fields<br>
+		<b> pre: </b> <br>
+		<b> post: </b>Clears text fields<br>
+	 */
+	public void clearTextFields() {
+		cp5.get(Textfield.class, "Email").setText("");
+		cp5.get(Textfield.class, "Password").setText("");
 	}
-
+	
+	
+	/**  
+	 *	Getters
+	 */
 	public boolean isCannotLoginError() {
 		return cannotLoginError;
 	}
@@ -184,9 +225,6 @@ public class LoginView {
 		return cp5;
 	}
 	
-	public void clearTextFields() {
-		cp5.get(Textfield.class, "Email").setText("");
-		cp5.get(Textfield.class, "Password").setText("");
-	}
+	
 
 }

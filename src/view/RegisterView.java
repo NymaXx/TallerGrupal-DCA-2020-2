@@ -8,11 +8,11 @@ import processing.core.PFont;
 import processing.core.PImage;
 
 /**
- * Register view class 
+ * Register view class final version
 
  * @author: Juan P. Sanin
 
- * @version: 1.1 11/14/2020
+ * @version: 1.1 11/16/2020
 
  */
 	
@@ -50,7 +50,13 @@ public class RegisterView {
 	private String[] inputs;
 	private ControlP5 cp5;
 	
-
+	/** 
+	 * 
+	 *	Constructor method for RegisterView <br>
+		<b> pre: </b> <br>
+		<b> post: </b> Creates the visualization of the register screen<br>
+	 * @param app, PApplet processing core
+	 */
 	public RegisterView(PApplet app) {
 		controller=new Controller();
 		this.app = app;
@@ -82,7 +88,12 @@ public class RegisterView {
 	}
 	
 	
-
+	/** 
+	 * 
+	 *	Method for initializing textFields<br>
+		<b> pre: </b> <br>
+		<b> post: </b>initializes textFields with position, size, color and font<br>
+	 */
 	private void initializeTextFields() {
 		inputs[0] = "Name";
 		inputs[1] = "Last Name";
@@ -121,6 +132,12 @@ public class RegisterView {
 		.setColor(app.color(0,0,0,255)).setColorCursor(app.color(0,0,0,255)).setFont(font).getCaptionLabel().hide();
 	}
 	
+	/** 
+	 * 
+	 *	Method for drawing the Register Screen<br>
+		<b> pre: </b> <br>
+		<b> post: </b>Draws the register screen<br>
+	 */
 	public void drawScreen() {
 		
 		if(error==true || registerError==true || passwordMatchError==true) {
@@ -172,7 +189,13 @@ public class RegisterView {
 	
 	
 
-
+	/** 
+	 * 
+	 *	Method for changing screens<br>
+		<b> pre: </b> <br>
+		<b> post: </b>Changes screens depending on the click<br>
+		@return screen, the screen where the program should go
+	 */
 	public int changeScreen() {
 		int screen=2;
 		if(error==false && registerError==false && passwordMatchError==false) {
@@ -206,6 +229,14 @@ public class RegisterView {
 		return screen;
 	}
 	
+	
+	/** 
+	 * 
+	 *	Method for registering a user<br>
+		<b> pre: </b> <br>
+		<b> post: </b>Registers a user or not depending on the inputs<br>
+		@return success, a boolean representing if the user was registered successfully or not
+	 */
 	private boolean registerUser() {
 		boolean success=false;
 		name=cp5.get(Textfield.class, "Name").getText();
@@ -248,10 +279,27 @@ public class RegisterView {
 		return success;
 	}
 	
-	public void hide() {
-		cp5.hide();
+	
+	/** 
+	 * 
+	 *	Method for clearing the text fields<br>
+		<b> pre: </b> <br>
+		<b> post: </b>Clears text fields<br>
+	 */
+	public void clearTextFields() {
+		cp5.get(Textfield.class, "Name").setText("");
+		cp5.get(Textfield.class, "Last Name").setText("");
+		cp5.get(Textfield.class, "E-mail").setText("");
+		cp5.get(Textfield.class, "Nationality").setText("");
+		cp5.get(Textfield.class, "Phone Number").setText("");
+		cp5.get(Textfield.class, "Password").setText("");
+		cp5.get(Textfield.class, "Confirm Password").setText("");
 	}
-
+	
+	
+	/** 
+	 * Getters
+	 */
 	public ControlP5 getCp5() {
 		return cp5;
 	}
@@ -264,14 +312,6 @@ public class RegisterView {
 	public boolean isPasswordMatchError() {
 		return passwordMatchError;
 	}
-	public void clearTextFields() {
-		cp5.get(Textfield.class, "Name").setText("");
-		cp5.get(Textfield.class, "Last Name").setText("");
-		cp5.get(Textfield.class, "E-mail").setText("");
-		cp5.get(Textfield.class, "Nationality").setText("");
-		cp5.get(Textfield.class, "Phone Number").setText("");
-		cp5.get(Textfield.class, "Password").setText("");
-		cp5.get(Textfield.class, "Confirm Password").setText("");
-	}
+
 
 }

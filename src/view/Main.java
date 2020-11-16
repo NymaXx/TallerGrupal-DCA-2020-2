@@ -4,11 +4,11 @@ import processing.core.PApplet;
 import processing.event.MouseEvent;
 
 /**
- * Main class 
+ * Main class Final Version
 
  * @author: Juan Pablo Sanin
 
- * @version: 1.5 11/16/2020
+ * @version: 1.6 11/16/2020
 
  */
 
@@ -31,11 +31,23 @@ public class Main extends PApplet {
 
 	}
 
+	/** 
+	 * 
+	 *	Settings method in the main class <br>
+		<b> pre: </b> <br>
+		<b> post: </b> Creates the program screen dimensions<br>
+	 */
 	public void settings() {
 		size(1280, 720);
 
 	}
 
+	/** 
+	 * 
+	 *	Setup method in the main class<br>
+		<b> pre: </b> <br>
+		<b> post: </b>Initializes all views and screen attribute<br>
+	 */
 	public void setup() {
 		screen=1;
 		lv= new LoginView(this);
@@ -52,6 +64,12 @@ public class Main extends PApplet {
 
 	}
 
+	/** 
+	 * 
+	 *	Draw method in the main class<br>
+		<b> pre: </b> <br>
+		<b> post: </b>Visualizes the program and allows it fun function<br>
+	 */
 	public void draw() {
 		background(0);
 
@@ -151,6 +169,13 @@ public class Main extends PApplet {
 	}
 
 
+	
+	/** 
+	 * 
+	 *	Mouse  pressed method in the main class<br>
+		<b> pre: </b> <br>
+		<b> post: </b>Registers clicks and acts based on where it happened<br>
+	 */
 	public void mousePressed() {
 		if(showProfile==true) {
 			if(!(mouseX>1028 && mouseX<1280 &&mouseY>72 && mouseY<344)) {
@@ -237,6 +262,15 @@ public class Main extends PApplet {
 
 	}
 
+	
+	
+	
+	/** 
+	 * 
+	 *	Mouse wheel method in the main class<br>
+		<b> pre: </b> <br>
+		<b> post: </b>Allows users to scroll depending on the screen<br>
+	 */
 	public void mouseWheel(MouseEvent event) {
 		float e = event.getCount();
 		switch(screen) {

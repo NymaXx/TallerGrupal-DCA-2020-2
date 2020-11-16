@@ -44,4 +44,10 @@ public class Controller {
 		adminSystem.addTrip(trip);
 	}
 
+	public void getContactInfo(String name, String lastName, String nationality, String email, String phone,
+			PApplet app) {
+		adminSystem.addContact(name,lastName,nationality,email,phone,app);
+		
+	}
+
 }

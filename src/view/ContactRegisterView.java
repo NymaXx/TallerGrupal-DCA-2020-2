@@ -68,7 +68,7 @@ public class ContactRegisterView {
 			}
 			
 	public void drawScreen() {
-		if(error==true) {
+		if(error==true||contactAdded==true) {
 			app.image(registerContactScreen, 0,72);
 			app.image(navBar, -4, 0);
 			app.image(addContactButton, 541, 591);
@@ -117,8 +117,9 @@ public class ContactRegisterView {
 				error=true;
 				System.out.println("si");
 			}else {
-				//controller.getContactInfo(name,lastName,nationality,email,phone, app);
+				controller.getContactInfo(name,lastName,nationality,email,phone, app);
 				success=true;
+				contactAdded=true;
 			}
 				
 			if(success==true) {

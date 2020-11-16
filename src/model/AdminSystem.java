@@ -80,7 +80,9 @@ public class AdminSystem {
 	}
 
 	
-	public void addContact() {}
+	public void addContact(String name, String lastName, String nationality, String email, String phone, PApplet app) {
+		users.get(currentUser).addContact(name,lastName,nationality,email,phone,app);
+	}
 
 	public ArrayList<User> getUsers() {
 		return users;

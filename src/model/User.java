@@ -33,7 +33,19 @@ public class User extends Person{
 	}
 
 	
-	public void addContact() {}
+	public void addContact(String name, String lastName, String nationality, String email, String phone, PApplet app) {
+		Contact c= new Contact(name, lastName, nationality, email, phone, app);
+		contacts.add(c);
+		for(int i = 0; i<contacts.size();i++) {
+			System.out.println(contacts.get(i).getName());
+			System.out.println(contacts.get(i).getLastName());
+			System.out.println(contacts.get(i).getEmail());
+			System.out.println(contacts.get(i).getNationality());
+			System.out.println(contacts.get(i).getPhone());
+			System.out.println(">>>>>>>>><<<<<<<<<<");
+			
+		}
+	}
 	
 	public void purchaseTrip(int trip) {
 		switch(trip) {
